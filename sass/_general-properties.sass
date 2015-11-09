@@ -1,0 +1,109 @@
+.loader-block
+    position: fixed
+    width: 100%
+    height: 100%
+    left: 0
+    top: 0
+    background: white
+    z-index: 1
+.loader
+    position: relative
+    width: 400px
+    height: 300px
+    left: 50%
+    top: 50%
+    opacity: 1
+    transition: all 1s ease-in-out
+    background-image: url(../images/loader2.gif)
+    @include transform (-50%, -50%)
+
+.container
+    position: relative
+    width: 100%
+    text-align: center
+.headline
+    position: relative
+    display: inline-block
+    margin: 7% auto 0 auto
+    padding: 0 5%
+      
+.dark-style
+    @extend .headline
+    @include font_settings (Lato, 2rem, 700, $main_color)
+        
+.light-style
+    @extend .headline
+    @include font_settings (Lato, 2rem, 700, $white)
+        
+.external-block
+    position: relative
+    width: 50%
+    padding: 8% 10% 5% 10%
+    margin: -20px auto 8% auto
+    text-align: center
+    line-height: 24px
+
+.dark-frame
+    @extend .external-block
+    @include external_decoration ($main_color)
+    @include font_settings (Lato, 1.5rem, 300, $main_color)
+    line-height: 30px
+    &::before
+        content: ''
+        position: absolute
+        width: 25%
+        height: 1.5px
+        background: $main_color
+        right: 0
+        top: 0
+    &::after
+        content: ''
+        position: absolute
+        width: 25%
+        height: 1.5px
+        background: $main_color
+        right: 75%
+        top: 0
+        
+.light-frame
+    @extend .external-block
+    @include font_settings (Lato, 1.5rem, 300, $white)
+    @include external_decoration ($white)
+    line-height: 30px
+    &::before
+        content: ''
+        position: absolute
+        width: 25%
+        height: 1.5px
+        background: $white
+        right: 0
+        top: 0
+    &::after
+        content: ''
+        position: absolute
+        width: 25%
+        height: 1.5px
+        background: $white
+        right: 75%
+        top: 0
+
+@media only screen and (max-width: $small) 
+    .external-block
+        width: 95%
+        padding: 50px 10px
+        margin: -20px auto 8% auto
+        text-align: center
+        line-height: 24px
+    .dark-frame 
+        &::before
+            width: 10%
+        &::after
+            right: 90%
+            width: 10%
+    .light-frame
+        &::before
+            width: 10%
+        &::after
+            right: 90%
+            width: 10%
+            

@@ -1,0 +1,26 @@
+@mixin font_settings ($family, $size, $weight, $text_color)
+    font:
+        family: $family, 'Open Sans Condensed', sans-serif
+        size: $size
+        weight: $weight
+    color: $text_color
+
+@mixin external_decoration ($color)
+    border-left: 1.5px solid $color
+    border-right: 1.5px solid $color
+    border-bottom: 1.5px solid $color
+    box-sizing: border-box
+
+@mixin transformx ($x-pos)
+    -moz-transform: translatex($x-pos)
+    -ms-transform: translatex($x-pos)
+    -webkit-transform: translatex($x-pos)
+    -o-transform: translatex($x-pos)
+    transform: translatex($x-pos)
+
+@mixin transform ($x-pos, $y-pos)
+    -moz-transform: translate($x-pos, $y-pos)
+    -ms-transform: translate($x-pos, $y-pos)
+    -webkit-transform: translate($x-pos, $y-pos)
+    -o-transform: translate($x-pos, $y-pos)
+    transform: translate($x-pos, $y-pos)

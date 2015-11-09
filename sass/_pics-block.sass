@@ -1,0 +1,50 @@
+.pics-block 
+    position: relative
+    width: 100% 
+    height: 35%
+    text-align: center
+    margin-bottom: 0.5%
+
+.pic
+    position: absolute
+    text-align: left
+    display: inline-block
+    height: 100%
+
+.big
+    position: relative
+    background-image: url(../images/big1.jpg)
+    background-size: cover
+    width: 45%
+    margin: 0 auto
+.big-2
+    @extend .big
+    background-image: url(../images/big2.jpg)
+
+.small
+    width: 27%
+
+    &-1
+        left: 0
+        background-image: url(../images/small1.jpg)
+        background-size: cover
+
+    &-2
+        right: 0
+        background-image: url(../images/small2.jpg)
+        background-size: cover
+    &-3
+        left: 0
+        background-image: url(../images/small3.jpg)
+        background-size: cover
+    &-4
+        right: 0
+        background-image: url(../images/small4.jpg)
+        background-size: cover
+
+@media only screen and (max-width: $small)
+    .small
+        display: none
+    .big
+        width: 100%
+

@@ -1,0 +1,33 @@
+.offer 
+    padding-bottom: 10%
+    opacity: 0
+    position: relative
+    @include transformx (-30px)
+    transition: all 2s ease
+    &.show-offer
+        opacity: 1
+        @include transformx (0px)
+
+.service-headline
+    @include font_settings (Lato, 19.96px, 700, $main_color)
+    line-height: 50px
+
+.sub-headline
+    @include font_settings (Lato, 16px, 700, $main_color)
+    line-height: 40px
+
+.service-extension
+    @extend .container
+    margin-bottom: 10%
+    &-inputs
+        width: 90%
+        height: 40px
+        text-align: center
+    &-textarea
+        width: 90%
+        height: 100px
+
+.admin-block
+    @extend .container
+    padding-bottom: 10%
+
