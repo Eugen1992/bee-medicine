@@ -6,6 +6,7 @@
   - Jquery
   - Underscore
   - Requirejs
+  - Grunt
 
 ######Page layout was made with the use of:
   - Sass
