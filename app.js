@@ -1,9 +1,18 @@
 var express = require("express");
 var underscore = _ = require("underscore");
 var bodyParser = require("body-parser");
-var mailer = require('./controllers/mailer.js');
+var mailer = require('./controllers/contact.js');
+var serviceController = require('./controllers/services.js');
 var app = express();
+var MongoClient = require('mongodb').MongoClient;
 
+MongoClient.connect('mongodb://127.0.0.1:27017/', function (err, db) {
+  app.use(function(req,res,next){
+    req.db = db;
+    next();
+  });
+  serviceController.controller(app);
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -13,6 +22,7 @@ app.use(express.static(__dirname + '/client/js/Contacts'));
 app.use(express.static(__dirname + '/client/js/recievers'));
 
 var modulesData = {};
+
 
 modulesData.services = [
                 {serviceName: '1 час', price: 40, description: '"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."', id: 101}, 
@@ -27,7 +37,7 @@ modulesData.contacts = [
                 id: 1}
                 ]
 
-var modules = ['services', 'contacts'];
+var modules = ['contacts'];
 
 createREST();
 mailer.controller(app);

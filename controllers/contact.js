@@ -5,15 +5,15 @@ function controller(app) {
   var transporter = nodemailer.createTransport({
    service: 'Gmail',
    auth: {
-       user: 'example@gmail.com',
-       pass: 'password'
+       user: 'beesmedicine@gmail.com',
+       pass: 'bees1962'
    }
  });
   
   var recievers = [
-                {recieverAdress: 'dimahrytsenko@gmail.com', id: 1}
+                {recieverAdress: 'eugenalforov@gmail.com', id: 1}
                 ]
-  app.post("/registrationform", function(req, res){ 
+  app.post("/contact/booktime", function(req, res){ 
     var recieversAdreses = [];
 
     _.each(recievers, function(reciever) {

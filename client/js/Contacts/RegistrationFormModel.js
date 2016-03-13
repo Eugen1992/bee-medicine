@@ -1,6 +1,6 @@
 define(['backbone'], function(Backbone) {
 	var RegistrationFormModel = Backbone.Model.extend({
-		url: '/registrationform'
+		url: '/contact/booktime'
 	});
 
 	return RegistrationFormModel;
