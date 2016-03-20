@@ -1,34 +1,56 @@
 function controller(app) {
   app.get("/services", function(req, res) { 
-    req.db.collection('services').find({}).toArray(function (err, records) {
-      res.send(records);
-    });
+    req.db.collection('services').
+      find({}).
+      toArray(function (err, records) {
+        res.send(records);
+      });
+  });
+  app.get("/services/:id", function(req, res) { 
+    req.db.collection('services').
+      find({'_id': req.ObjectId(req.params.id)}).
+      limit(1).
+      toArray(function (err, records) {
+        if (err) {
+          res.sendStatus(500);  
+        } else {
+          res.sendStatus(200);
+        }
+      });
+  });
+  
+  app.delete("/services/:id", function(req, res) { 
+    req.db.collection('services').
+      deleteOne({'_id': req.ObjectId(req.params.id)}, function (err, numberOfDeleted) {
+        if (err) {
+          res.sendStatus(500);  
+        } else {
+          res.sendStatus(200);
+        }
+      });
   });
 
-   app.delete("/services/:id", function(req, res) { 
-       for (var i = 0; i < serviceCollection.length; i++) {
-         if (req.params.id == serviceCollection[i].id) {
-           serviceCollection.splice(i, 1);
-         };
-       };
-   });
-
    app.put("/services/:id", function(req, res) {
-       for (var i = 0; i < serviceCollection.length; i++) {
-         if (req.params.id == serviceCollection[i].id) {
-           serviceCollection[i] = req.body;
-         };
-       };
-       res.send("Got it!!");
+     delete req.body._id;
+     req.db.collection('services').
+      updateOne({'_id': req.ObjectId(req.params.id)}, req.body, {}, function (err, result) {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.send(result);
+        }
+      });
    });
 
    app.post("/services", function(req, res){                                    
-     serviceCollection.push(req.body);
-     for (var i = 0; i < serviceCollection.length; i++) {
-       if (serviceCollection[i].id == undefined) {
-         serviceCollection[i].id = serviceCollection[i-1].id + 1;
-       };
-     };
+     req.db.collection('services').
+      insertOne(req.body, {}, function (err, result) {
+        if (err) {
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      });
    });
 }
 module.exports.controller = controller;

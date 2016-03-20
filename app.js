@@ -4,11 +4,14 @@ var bodyParser = require("body-parser");
 var mailer = require('./controllers/contact.js');
 var serviceController = require('./controllers/services.js');
 var app = express();
-var MongoClient = require('mongodb').MongoClient;
+var mongoDb = require('mongodb');
+var MongoClient = mongoDb.MongoClient;
+var ObjectId = mongoDb.ObjectID;
 
 MongoClient.connect('mongodb://127.0.0.1:27017/', function (err, db) {
   app.use(function(req,res,next){
     req.db = db;
+    req.ObjectId = ObjectId;
     next();
   });
   serviceController.controller(app);
@@ -45,7 +48,7 @@ app.get("/", function(req, res) {
   res.sendfile('index.html');
 });
 app.get("/admin", function(req, res) {
-  res.sendfile('index.html');
+  res.sendfile('client/index.html');
 });
 
 function createREST () { 

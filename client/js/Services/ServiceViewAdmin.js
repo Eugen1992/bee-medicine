@@ -10,7 +10,8 @@ define(['jquery', 'underscore',
 			'click .js-edit' : 'editService',
 			'click .js-delete': 'deleteService',
 			'click .js-update' : 'updateService',
-			'click .js-cancel' : 'cancel'
+			'click .js-cancel' : 'cancel',
+            'click .js-getOne': 'getOne'
 		},
 		initialize: function() {
 			this.render();
@@ -26,7 +27,9 @@ define(['jquery', 'underscore',
 			this.remove();
 			this.model.destroy();
 		},
-
+        getOne: function () {
+          this.model.fetch();
+        },
 		updateService:function() {
 			this.model.set({ 	
 							'serviceName': this.$('.js-edit-service').val(),
