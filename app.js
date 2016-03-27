@@ -20,9 +20,6 @@ MongoClient.connect('mongodb://127.0.0.1:27017/', function (err, db) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(__dirname + '/client'));
-app.use(express.static(__dirname + '/client/js/Services'));
-app.use(express.static(__dirname + '/client/js/Contacts'));
-app.use(express.static(__dirname + '/client/js/recievers'));
 
 var modulesData = {};
 

@@ -1,3 +1,3 @@
 node_modules
-stylesheets
-.sass-cache
+client/stylesheets
+client/.sass-cache
