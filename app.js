@@ -8,6 +8,7 @@ var mongoDb = require('mongodb');
 var MongoClient = mongoDb.MongoClient;
 var ObjectId = mongoDb.ObjectID;
 
+process.env.PWD = process.cwd();
 MongoClient.connect('mongodb://127.0.0.1:27017/', function (err, db) {
   app.use(function(req,res,next){
     req.db = db;
@@ -19,7 +20,7 @@ MongoClient.connect('mongodb://127.0.0.1:27017/', function (err, db) {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
-app.use(express.static(__dirname + '/client'));
+app.use(express.static(process.env.PWD + '/client'));
 
 var modulesData = {};
 
