@@ -2,7 +2,6 @@ define(['jquery', 'underscore',
 		'backbone', 'ServTemplAdmin', 
 		'ServEditTempl'], function($, _, Backbone, serviceTemplateAdmin, serviceEditTemplate) {
 	var ServiceViewAdmin = Backbone.View.extend({
-		tagName: 'div',
 		className: 'admin-block',
 		displayTemplate	:  serviceTemplateAdmin,
 		editTemplate    :  serviceEditTemplate,

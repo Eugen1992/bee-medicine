@@ -36,7 +36,6 @@ define(['jquery', 'underscore',
 			$('.js-add-new-service-description').val('');
 		},
 		render: function() {
-			
 			this.collection.each(function(service) {
 				var serviceViewAdmin = new ServiceViewAdmin({model: service});
 				this.$el.append(serviceViewAdmin.el);
