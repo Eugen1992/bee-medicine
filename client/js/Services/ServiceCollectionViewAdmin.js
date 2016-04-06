@@ -13,7 +13,7 @@ define(['jquery', 'underscore',
 		initialize: function() {
 			this.$el.html(this.addTemplate);
 			this.collection = new ServiceCollection();
-			this.collection.on('sync', this.render, this);
+			this.collection.once('sync', this.render, this);
 			this.collection.fetch();
 			this.on('change', this.render, this);
 		},

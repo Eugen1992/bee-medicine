@@ -1,10 +1,9 @@
 define(['jquery', 'underscore', 
-		'backbone', 'ServCollection', 'ServViewCust', 
-		'ServTemplCustomer'], function($, _, Backbone, ServiceCollection, ServiceViewCustomer) {	
+		'backbone', 'ServViewCust', 
+		'ServTemplCustomer'], function($, _, Backbone, ServiceViewCustomer) {	
 	var ServiceCollectionViewCustomer = Backbone.View.extend({
 		tagName: 'div',
 		initialize: function() {
-			this.collection = new ServiceCollection();
 			this.collection.on('sync', this.render, this)
 			this.collection.fetch();
 		},

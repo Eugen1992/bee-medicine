@@ -1,6 +1,6 @@
-define(['backbone', 'ContactsModel'], function(Backbone, ContactsModel) {	
+define(['backbone', 'ContactModel'], function(Backbone, ContactModel) {	
 	var ContactsCollection = Backbone.Collection.extend({
-		model: ContactsModel,
+		model: ContactModel,
 		url: '/contacts'
 	});
 

@@ -22,22 +22,21 @@ require.config({
 
 		//conacts module
 
-		'ContactsModel' : 'js/Contacts/ContactsModel',
-		'ContactsViewCustomer' : 'js/Contacts/ContactsViewCustomer',
-		'ContactsViewAdmin' : 'js/Contacts/ContactsViewAdmin',
+		'ContactModel' : 'js/Contacts/ContactModel',
+		'ContactViewCustomer' : 'js/Contacts/ContactViewCustomer',
+		'ContactViewAdmin' : 'js/Contacts/ContactViewAdmin',
 		'ContactsCollection' : 'js/Contacts/ContactsCollection',
 		'ContactsCollectionViewCustomer' : 'js/Contacts/ContactsCollectionViewCustomer',
 		'ContactsCollectionViewAdmin' : 'js/Contacts/ContactsCollectionViewAdmin',
-		'ContactsCustomerTemplate' : 'js/Contacts/ContactsCustomerTemplate',
-		'ContactsAdminTemplate' : 'js/Contacts/ContactsAdminTemplate',
-		'ContactsAdminEditTemplate' : 'js/Contacts/ContactsAdminEditTemplate',
+		'ContactTemplate' : 'js/Contacts/Templates/ContactTemplate',
+		'ContactCreateEditTemplate' : 'js/Contacts/Templates/ContactCreateEditTemplate',
+        'ContactsCollectionAdminTemplate': 'js/Contacts/Templates/ContactsCollectionAdminTemplate',
 
 		//book module
 
-		'BookTimeModel' : 'js/Contacts/BookTimeModel',
-		'BookTimeView' : 'js/Contacts/BookTimeView',
-		'BookTimeTemplate' : 'js/Contacts/BookTimeTemplate',
-		'RegForm' : 'js/Contacts/RegistrationFormModel',
+		'BookTimeModel' : 'js/BookingModule/BookTimeModel',
+		'BookTimeView' : 'js/BookingModule/BookTimeView',
+		'BookTimeTemplate' : 'js/BookingModule/BookTimeTemplate',
 
 		//recievers module
 
@@ -62,11 +61,15 @@ require.config({
 require(['jquery', 'backbone', 'loaderView', 'Router'], function($, Backbone, LoaderView, Router) {
 	var router = new Router();
 	Backbone.history.start({ pushState: true });
+  
 	if (document.readyState !== "complete") {
-		$(window).load(function() {
-			loaderView.remove();
-		});
-		var loaderView = new LoaderView();
+      var 	loaderView;
+      
+      $(window).load(function() {
+        
+          loaderView.remove();
+      });
+      loaderView = new LoaderView();
 	}
 	
 	

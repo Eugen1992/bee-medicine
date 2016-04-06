@@ -1,7 +1,6 @@
 define(['jquery', 'underscore', 
 		'backbone', 'ContactsCollection', 
-		'ContactsViewCustomer', 'BookTimeModel', 
-		'BookTimeView'], function($, _, Backbone, ContactsCollection, ContactsViewCustomer, BookTimeModel, BookTimeView) {
+		'ContactViewCustomer'], function($, _, Backbone, ContactsCollection, ContactViewCustomer) {
 	var ContactsCollectionViewCustomer = Backbone.View.extend({
 		tagName: 'div',
 		initialize: function () {
@@ -12,8 +11,8 @@ define(['jquery', 'underscore',
 		render: function () {
 			this.$el.empty();
 			this.collection.each(function(contact) {
-				var contactsViewCustomer = new ContactsViewCustomer({model: contact});
-				this.$el.append(contactsViewCustomer.el);
+				var contactViewCustomer = new ContactViewCustomer({model: contact});
+				this.$el.append(contactViewCustomer.el);
 			}, this);
 		}
 	});

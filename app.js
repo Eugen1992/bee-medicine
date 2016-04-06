@@ -1,8 +1,10 @@
 var express = require("express");
 var underscore = _ = require("underscore");
 var bodyParser = require("body-parser");
-var mailer = require('./controllers/contact.js');
+var mailer = require('./controllers/mailer.js');
 var serviceController = require('./controllers/services.js');
+var contactController = require('./controllers/contacts.js');
+var receiversController = require('./controllers/receivers.js');
 var app = express();
 var mongoDb = require('mongodb');
 var MongoClient = mongoDb.MongoClient;
@@ -18,67 +20,22 @@ MongoClient.connect(herokuDB, function (err, db) {
     next();
   });
   serviceController.controller(app);
+  contactController.controller(app);
+  mailer.controller(app);
+  receiversController.controller(app);
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(process.env.PWD + '/client'));
 
-var modulesData = {};
 
-modulesData.contacts = [
-                {address: 'г. Днепропетровск, ул. Василя Гетьмана 34/12', 
-                telephone: '+38 096 587 87 85', 
-               working_hours_weekday: 'Пн-Чт: 06.00 - 18.00',
-                working_hours_weekend:'Пт-Вс: 10.00-24.00', 
-                id: 1}
-                ]
-
-var modules = ['contacts'];
-
-createREST();
-mailer.controller(app);
 app.get("/", function(req, res) {
   res.sendfile('index.html');
 });
 app.get("/admin", function(req, res) {
   res.sendfile('client/index.html');
 });
-
-function createREST () { 
-  _.each(modules, function(module) {
-     app.get("/" + module, function(req, res) { 
-      res.send(modulesData[module]);
-     });
-
-     app.delete("/" + module + "/:id", function(req, res) { 
-         for (var i = 0; i < modulesData[module].length; i++) {
-           if (req.params.id == modulesData[module][i].id) {
-             modulesData[module].splice(i, 1);
-           };
-         };
-     });
-
-     app.put("/" + module + "/:id", function(req, res) {
-         for (var i = 0; i < modulesData[module].length; i++) {
-           if (req.params.id == modulesData[module][i].id) {
-             modulesData[module][i] = req.body;
-           };
-         };
-         res.send("Got it!!");
-     });
-
-     app.post("/" + module, function(req, res){                                    
-       modulesData[module].push(req.body);
-       for (var i = 0; i < modulesData[module].length; i++) {
-         if (modulesData[module][i].id == undefined) {
-           modulesData[module][i].id = modulesData[module][i-1].id + 1;
-         };
-       };
-     });
-  });
-}
-
 
 var port = process.env.PORT || 1020;
 app.listen(port, function() {

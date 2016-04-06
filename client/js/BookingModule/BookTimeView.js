@@ -1,4 +1,4 @@
-define(['jquery', 'underscore', 'backbone', 'BookTimeModel', 'BookTimeTemplate', 'RegForm'], function($, _, Backbone, BookTimeModel, bookTimeTemplate, RegistrationFormModel) {	
+define(['jquery', 'underscore', 'backbone', 'BookTimeModel', 'BookTimeTemplate'], function($, _, Backbone, BookTimeModel, bookTimeTemplate, RegistrationFormModel) {	
 	var BookTimeView = Backbone.View.extend({
 		popUpDiv: bookTimeTemplate,
 		events: {
