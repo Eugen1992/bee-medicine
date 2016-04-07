@@ -26,14 +26,14 @@ function controller(app) {
      from: 'noreply  <dimahrytsenko@gmail.com>', // sender address
      to: joinedAdreses, // list of receivers
      subject: 'Заказ времени и услуги', // Subject line
-     text: 'Заказ  ' + '\n\n' + 'Имя клиента: ' + req.body.customerName + '\n\n' +  'Контактный номер телефона: ' + req.body.customerPhone + '\n\n' + 'Желаемая дата получения услуги: ' + req.body.dateOfProcedure + '\n\n' + 'Коментарии и пожелания: ' + req.body.customerComments, // plaintext body
+     text: 'Заказ  ' + '\n\n' + 'Имя клиента: ' + req.body.customerName + '\n\n' +  'Контактный номер телефона: ' + req.body.customerPhone + '\n\n' + 'Дата: ' + req.body.year + '.' + req.body.month + '.'  + req.body.day + '\n\n' + 'Время: ' + req.body.time // plaintext body
     }
     
     transporter.sendMail(mailOptions, function(error, info){ 
-     if(error){
-         console.log('Error', error);
-     }else{
-         console.log('Message sent: ' + info.response);
+     if (error) {
+       res.sendStatus(500);
+     } else {
+       res.send(JSON.stringify(req.body));
      }
     });
   });

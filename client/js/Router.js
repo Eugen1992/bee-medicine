@@ -17,8 +17,9 @@ define(['backbone', 'ServCollectionViewCust',
 			$('.js-service-block').html(serviceCollectionView.el);
 			$('.js-contact-block').html(contactsCollectionView.el);
 
-			$('.js-contact').each(function() {
-				var bookTimeView = new BookTimeView({el: $(this)});
+			$('.js-contact').click(function() {
+				var bookTimeView = new BookTimeView();
+                $('body').append(bookTimeView.render().$el);
 			});
 		},
 		admin: function() {
