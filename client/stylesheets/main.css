@@ -1,0 +1,466 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=latin,cyrillic-ext);
+.loader-block {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: white;
+  z-index: 1; }
+
+.loader {
+  position: relative;
+  width: 400px;
+  height: 300px;
+  left: 50%;
+  top: 50%;
+  opacity: 1;
+  transition: all 1s ease-in-out;
+  background-image: url(../images/loader2.gif);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); }
+
+.container, .logo2, .service-extension, .admin-block {
+  position: relative;
+  width: 100%;
+  text-align: center; }
+
+.headline, .dark-style, .light-style {
+  position: relative;
+  display: inline-block;
+  margin: 7% auto 0 auto;
+  padding: 0 5%; }
+
+.dark-style {
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #3c3c3c; }
+
+.light-style {
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff; }
+
+.external-block, .dark-frame, .light-frame {
+  position: relative;
+  width: 50%;
+  padding: 8% 10% 5% 10%;
+  margin: -20px auto 8% auto;
+  text-align: center;
+  line-height: 24px; }
+
+.dark-frame {
+  border-left: 1.5px solid #3c3c3c;
+  border-right: 1.5px solid #3c3c3c;
+  border-bottom: 1.5px solid #3c3c3c;
+  box-sizing: border-box;
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #3c3c3c;
+  line-height: 30px; }
+  .dark-frame::before {
+    content: '';
+    position: absolute;
+    width: 25%;
+    height: 1.5px;
+    background: #3c3c3c;
+    right: 0;
+    top: 0; }
+  .dark-frame::after {
+    content: '';
+    position: absolute;
+    width: 25%;
+    height: 1.5px;
+    background: #3c3c3c;
+    right: 75%;
+    top: 0; }
+
+.common-inputLabel {
+  display: block; }
+
+.common-input {
+  display: block;
+  margin: 0 auto; }
+
+.light-frame {
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: #fff;
+  border-left: 1.5px solid #fff;
+  border-right: 1.5px solid #fff;
+  border-bottom: 1.5px solid #fff;
+  box-sizing: border-box;
+  line-height: 30px; }
+  .light-frame::before {
+    content: '';
+    position: absolute;
+    width: 25%;
+    height: 1.5px;
+    background: #fff;
+    right: 0;
+    top: 0; }
+  .light-frame::after {
+    content: '';
+    position: absolute;
+    width: 25%;
+    height: 1.5px;
+    background: #fff;
+    right: 75%;
+    top: 0; }
+
+@media only screen and (max-width: 1024px) {
+  .external-block, .dark-frame, .light-frame {
+    width: 95%;
+    padding: 50px 10px;
+    margin: -20px auto 8% auto;
+    text-align: center;
+    line-height: 24px; }
+  .dark-frame::before {
+    width: 10%; }
+  .dark-frame::after {
+    right: 90%;
+    width: 10%; }
+  .light-frame::before {
+    width: 10%; }
+  .light-frame::after {
+    right: 90%;
+    width: 10%; } }
+
+body {
+  margin: 0;
+  width: 100%; }
+
+.main {
+  position: relative;
+  width: 100%; }
+
+.header {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-image: url(../images/logo.jpg);
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed; }
+  .header::before {
+    content: "";
+    display: inline-block;
+    min-height: inherit;
+    height: 100%;
+    vertical-align: bottom; }
+  .header-text {
+    position: absolute;
+    display: block;
+    width: 40%;
+    left: 30%;
+    top: 30%;
+    text-align: center;
+    font-family: Lato, "Open Sans Condensed", sans-serif;
+    font-size: 53.9px;
+    font-weight: 700;
+    color: #fff; }
+
+@media only screen and (max-width: 1024px) {
+  .header-text {
+    width: 100%;
+    left: 0;
+    top: 20%;
+    text-align: center; } }
+
+.logo2 {
+  padding-bottom: 1px;
+  background-image: url(../images/logo2.png);
+  background-size: cover;
+  background-attachment: fixed; }
+
+.offer {
+  padding-bottom: 10%;
+  opacity: 0;
+  position: relative;
+  -moz-transform: translatex(-30px);
+  -ms-transform: translatex(-30px);
+  -webkit-transform: translatex(-30px);
+  -o-transform: translatex(-30px);
+  transform: translatex(-30px);
+  transition: all 2s ease; }
+  .offer.show-offer {
+    opacity: 1;
+    -moz-transform: translatex(0px);
+    -ms-transform: translatex(0px);
+    -webkit-transform: translatex(0px);
+    -o-transform: translatex(0px);
+    transform: translatex(0px); }
+
+.service-headline {
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 19.96px;
+  font-weight: 700;
+  color: #3c3c3c;
+  line-height: 50px; }
+
+.sub-headline {
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #3c3c3c;
+  line-height: 40px; }
+
+.service-extension {
+  margin-bottom: 10%; }
+  .service-extension-inputs {
+    width: 90%;
+    height: 40px;
+    text-align: center; }
+  .service-extension-textarea {
+    width: 90%;
+    height: 100px; }
+
+.admin-block {
+  padding-bottom: 10%; }
+
+.pics-block {
+  position: relative;
+  width: 100%;
+  height: 35%;
+  text-align: center;
+  margin-bottom: 0.5%; }
+
+.pic {
+  position: absolute;
+  text-align: left;
+  display: inline-block;
+  height: 100%; }
+
+.big, .big-2 {
+  position: relative;
+  background-image: url(../images/big1.jpg);
+  background-size: cover;
+  width: 45%;
+  margin: 0 auto; }
+
+.big-2 {
+  background-image: url(../images/big2.jpg); }
+
+.small {
+  width: 27%; }
+  .small-1 {
+    left: 0;
+    background-image: url(../images/small1.jpg);
+    background-size: cover; }
+  .small-2 {
+    right: 0;
+    background-image: url(../images/small2.jpg);
+    background-size: cover; }
+  .small-3 {
+    left: 0;
+    background-image: url(../images/small3.jpg);
+    background-size: cover; }
+  .small-4 {
+    right: 0;
+    background-image: url(../images/small4.jpg);
+    background-size: cover; }
+
+@media only screen and (max-width: 1024px) {
+  .small {
+    display: none; }
+  .big, .big-2 {
+    width: 100%; } }
+
+.contact-btn {
+  position: relative;
+  display: inline-block;
+  padding: 2 4em;
+  border-radius: 30px;
+  font-family: Lato, "Open Sans Condensed", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff; }
+  .contact-btn:hover {
+    cursor: pointer; }
+
+.contact-btn-top {
+  vertical-align: bottom;
+  margin-bottom: 30px;
+  border: 2px solid #fff;
+  text-align: center;
+  box-sizing: border-box; }
+
+.contact-btn-bottom {
+  background: #3c3c3c;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 1.5em;
+  margin-top: 30px;
+  border: 2px solid whitesmoke; }
+
+.bookForm-background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(60, 60, 60, 0.4);
+  z-index: 2;
+  cursor: default; }
+
+.bookForm {
+  position: relative;
+  height: 85%;
+  width: 60%;
+  top: 50px;
+  overflow-y: auto;
+  margin: 0 auto;
+  background: #202A47;
+  padding: 105px 10% 20px 10%;
+  font-family: 'Courier New';
+  box-sizing: border-box; }
+
+.bookForm-message {
+  display: none;
+  position: relative;
+  margin: o auto;
+  font-size: 20px;
+  color: white;
+  vertical-align: middle;
+  top: 150px; }
+
+.is-loading .bookForm-loading {
+  display: block; }
+
+.is-success .bookForm-success {
+  display: block; }
+
+.is-error .bookForm-error {
+  display: block; }
+
+.is-loading .bookForm-form, .is-success .bookForm-form, .is-error .bookForm-form {
+  visibility: hidden;
+  pointer-events: none; }
+
+.bookForm-switcher {
+  position: absolute;
+  margin-top: -85px;
+  height: 100px;
+  width: 100%;
+  text-align: center;
+  left: 0; }
+
+.bookForm-switchButton {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 20px;
+  padding-bottom: 22px;
+  border-bottom: solid 1px white;
+  font-family: "Courier New";
+  transition: all 100ms linear;
+  box-sizing: border-box;
+  font-size: 17px; }
+  .bookForm-switchButton.is-active {
+    border-bottom-width: 3px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    font-size: 20px; }
+
+.bookForm-label {
+  display: block;
+  text-align: center;
+  color: white;
+  margin-top: 35px;
+  text-align: center;
+  font-family: "Courier New";
+  font-size: 16px; }
+
+.bookForm-inputLabel {
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  color: white;
+  margin-right: 15px;
+  font-family: "Courier New";
+  font-size: 14px; }
+
+.bookForm-inputWrapper {
+  text-align: left;
+  width: 100%;
+  margin: 0 auto 10px;
+  vertical-align: middle; }
+
+.bookForm-input {
+  display: block;
+  vertical-align: middle;
+  margin: 0 auto 10px;
+  background: transparent;
+  color: white;
+  border: none;
+  width: 100%;
+  border-bottom: solid 1px white;
+  padding: 10px;
+  outline: none; }
+
+.bookForm-closeSign {
+  position: absolute;
+  color: white;
+  top: 8px;
+  cursor: pointer;
+  right: 8px;
+  font-family: "Arial";
+  font-size: 12px; }
+
+.bookForm-select {
+  display: block;
+  margin: 0 auto;
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: solid 1px white;
+  text-align: center;
+  font-family: "Courier New";
+  outline: none; }
+
+.bookForm-input--small {
+  display: inline-block;
+  width: auto;
+  margin-left: 5px;
+  margin-right: 40px; }
+
+.bookForm-select > option {
+  color: #202A47; }
+
+.bookForm-submitButton {
+  display: block;
+  width: 100%;
+  font-style: italic;
+  font-size: 24px;
+  cursor: pointer;
+  background-color: white;
+  padding: 14px 10px;
+  outline: none;
+  border: none;
+  text-decoration: uppercase;
+  color: #202A47; }
+
+@media only screen and (max-width: 1024px) {
+  .contact-btn {
+    padding: 10px 20px; }
+  .bookForm {
+    height: 70%;
+    width: 90%; }
+  .contact-form-date {
+    position: relative;
+    margin: 10px auto;
+    display: block;
+    width: 40%; } }
+
+/*# sourceMappingURL=main.css.map */

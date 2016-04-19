@@ -6,6 +6,8 @@
   },
   "name": "bees",
   "dependencies": {
+    "babel-core": "^6.7.6",
+    "babel-loader": "^6.2.4",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "grunt": "0.4.5",
@@ -13,7 +15,8 @@
     "grunt-sass": "1.1.0",
     "mongodb": "^2.1.7",
     "nodemailer": "^1.8.0",
-    "underscore": "^1.8.3"
+    "underscore": "^1.8.3",
+    "webpack": "^1.13.0"
   },
   "keywords": [
     "node",

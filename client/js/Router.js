@@ -1,5 +1,5 @@
 define(['backbone', 'ServCollectionViewCust', 
-	'ContactsCollectionViewCustomer', 'BookTimeView',
+	'ContactsCollectionViewCustomer', 'jsx!BookTimeView',
 	'ServCollectionViewAdm', 'ContactsCollectionViewAdmin', 
 	'RecieversCollectionViewAdmin', 'ServCollection'], function(Backbone, ServiceCollectionViewCustomer, ContactsCollectionViewCustomer, BookTimeView, ServiceCollectionViewAdmin, ContactsCollectionViewAdmin, RecieversCollectionViewAdmin, ServiceCollection) {
 	var Router = Backbone.Router.extend({
