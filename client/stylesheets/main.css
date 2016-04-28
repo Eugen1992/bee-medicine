@@ -313,13 +313,12 @@ body {
 
 .bookForm {
   position: relative;
-  height: 85%;
   width: 60%;
   top: 50px;
   overflow-y: auto;
   margin: 0 auto;
   background: #202A47;
-  padding: 105px 10% 20px 10%;
+  padding: 105px 10% 30px 10%;
   font-family: 'Courier New';
   box-sizing: border-box; }
 

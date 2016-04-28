@@ -25,14 +25,17 @@ define(['jquery', 'react', 'reactDom', 'backbone', 'BookTimeModel'], function($,
     },
     render: function() {
       var Form = React.createClass({
+        submit: function () {
+            console.log('horay');
+        }
         render: function() {
           return (
           <div className="bookForm-background">
             <div className="js-book-form bookForm">
               <span className="js-cancel bookForm-closeSign">X</span>
               <div className="bookForm-switcher">
-                <button className="bookForm-switchButton js-switchForm" data-switch-to="book"> Заказать услугу</button>
-                //<button className="bookForm-switchButton js-switchForm" data-switch-to="ask"> Задать вопрос</button>
+                <button className="bookForm-switchButton js-switchForm is-active" data-switch-to="book"> Заказать услугу</button>
+                {/*<button className="bookForm-switchButton js-switchForm" data-switch-to="ask"> Задать вопрос</button>*/}
               </div>
               <div className="bookForm-message bookForm-loading"> Минуту, мы уточняем не заняты ли пчелы...</div>
               <div className="bookForm-message bookForm-success"> Спасибо за Ваш заказ, мы скоро с вами свяжемся.</div>
