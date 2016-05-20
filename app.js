@@ -12,7 +12,7 @@ var ObjectId = mongoDb.ObjectID;
 
 process.env.PWD = process.cwd();
 var herokuDB = 'mongodb://heroku_j3fmzffv:9c4o9d1fad6h19p1abs7fl1u6g@ds011880.mlab.com:11880/heroku_j3fmzffv';
-var localDB = 'mongodb://localhost:27017'
+var localDB = 'mongodb://localhost:27017';
 MongoClient.connect(herokuDB, function (err, db) {
   app.use(function(req,res,next){
     req.db = db;

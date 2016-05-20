@@ -1,19 +1,23 @@
-define(['backbone', 'ServCollectionViewCust', 
-	'ContactsCollectionViewCustomer', 'jsx!BookTimeView',
-	'ServCollectionViewAdm', 'ContactsCollectionViewAdmin', 
-	'RecieversCollectionViewAdmin', 'ServCollection'], function(Backbone, ServiceCollectionViewCustomer, ContactsCollectionViewCustomer, BookTimeView, ServiceCollectionViewAdmin, ContactsCollectionViewAdmin, RecieversCollectionViewAdmin, ServiceCollection) {
+var ServiceCollectionViewCustomer,// = require('./client/js/Services/ServiceCollectionViewCustomer.js'),
+    ContactsCollectionViewCustomer,
+    BookTimeView,
+    ServiceCollectionViewAdmin,
+    ContactsCollectionViewAdmin,
+    RecieversCollectionViewAdmin,
+    ServiceCollection = require('./Services/ServiceCollection.js');
 	var Router = Backbone.Router.extend({
 		routes: {
-			"admin" : "admin",
+			//"admin" : "admin",
 			"" 		: "home"
 		},
-		initialize: function() {
+		/*initialize: function() {
 			Backbone.Mediator.subscribe('navigate', this.navigate, this);
-		},
+		},*/
 		home: function() {
-            var serviceCollection = new ServiceCollection();
-			var serviceCollectionView = new ServiceCollectionViewCustomer({collection: serviceCollection});
-			var contactsCollectionView = new ContactsCollectionViewCustomer();
+      var serviceCollection = new ServiceCollection();
+      //var serviceCollectionView = new ServiceCollectionViewCustomer({collection: serviceCollection});
+    }
+			/*var contactsCollectionView = new ContactsCollectionViewCustomer();
 			$('.js-service-block').html(serviceCollectionView.el);
 			$('.js-contact-block').html(contactsCollectionView.el);
 
@@ -23,14 +27,13 @@ define(['backbone', 'ServCollectionViewCust',
 			});
 		},
 		admin: function() {
-			
+
 			var serviceCollectionView = new ServiceCollectionViewAdmin();
 			var contactsCollectionView = new ContactsCollectionViewAdmin();
 			var recieversCollectionViewAdmin = new RecieversCollectionViewAdmin();
 			$('.js-service-block').html(serviceCollectionView.el);
 			$('.js-contact-block').html(contactsCollectionView.el);
-		}
+		}*/
 	});
 
-	return Router;
-});
+	module.exports = Router;

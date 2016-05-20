@@ -1,11 +1,11 @@
 require.config({
 	paths: {
 		//libraries
-        'text': 'libraries/text',
-        'react' : 'libraries/react-with-addons',
-        'reactDom' : 'libraries/react-dom',
-        'JSXTransformer': 'libraries/JSXTransformer',
-        'jsx': 'libraries/jsx',
+    'text': 'libraries/text',
+    'react' : 'libraries/react-with-addons',
+    'reactDom' : 'libraries/react-dom',
+    'JSXTransformer': 'libraries/JSXTransformer',
+    'jsx': 'libraries/jsx',
 		'jquery' : 'libraries/jquery',
 		'underscore' : 'libraries/underscore',
 		'backbone' : 'libraries/backbone',
@@ -38,9 +38,6 @@ require.config({
 
 		//book module
 
-		'BookTimeModel' : 'js/BookingModule/BookTimeModel',
-		'BookTimeView' : 'js/BookingModule/BookTimeView',
-		'BookTimeTemplate' : 'js/BookingModule/BookTimeTemplate',
 
 		//recievers module
 
