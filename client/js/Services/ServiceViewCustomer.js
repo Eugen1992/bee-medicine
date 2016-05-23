@@ -3,7 +3,6 @@ var ServiceViewCustomer = Backbone.View.extend({
   template: ServiceTemplate,
   tagName: 'div',
   className: 'js-service offer container',
-
   initialize: function() {
     this.render();
   },

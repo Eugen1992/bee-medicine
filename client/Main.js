@@ -63,6 +63,7 @@ var Router = require('./js/Router.js');
 var LoaderView = require('./js/LoaderView.js');
 
 var router = new Router();
+
 Backbone.history.start({ pushState: true });
 
 if (document.readyState !== "complete") {

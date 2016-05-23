@@ -1,4 +1,3 @@
-
 ServiceViewCustomer = require('./ServiceViewCustomer.js');
 
 var ServiceCollectionViewCustomer = Backbone.View.extend({
@@ -6,10 +5,8 @@ var ServiceCollectionViewCustomer = Backbone.View.extend({
   initialize: function() {
     this.collection.on('sync', this.render, this);
     this.collection.fetch();
-    console.log(this.collection);
   },
   render: function () {
-    console.log(this.collection);
     this.collection.each(function (service) {
       var serviceViewCustomer = new ServiceViewCustomer({ model: service });
       this.$el.append(serviceViewCustomer.el);

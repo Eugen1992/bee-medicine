@@ -10,11 +10,9 @@ define(['jquery', 'react', 'reactDom', 'backbone', 'BookTimeModel'], function($,
     },
     events: {
       'click' 						: 'render',
-      'click .js-cancel' 			: 'closeForm', 
-      'click .js-send' 				: 'sendOrder',
-      'click .js-book-form' 		: 'prvntPr',
+      'click .js-cancel' 			: 'closeForm',
       'click .js-book-block'		: 'closeForm',
-      'click .js-switchForm'        : 'switchForm'
+      'click .js-switchForm'    : 'switchForm'
     },
     closeForm: function(e) {
       this.remove();
@@ -26,12 +24,12 @@ define(['jquery', 'react', 'reactDom', 'backbone', 'BookTimeModel'], function($,
     render: function() {
       var Form = React.createClass({
         submit: function () {
-            console.log('horay');
-        }
+            console.log('hooray');
+        },
         render: function() {
           return (
           <div className="bookForm-background">
-            <div className="js-book-form bookForm">
+            <div className=" bookForm">
               <span className="js-cancel bookForm-closeSign">X</span>
               <div className="bookForm-switcher">
                 <button className="bookForm-switchButton js-switchForm is-active" data-switch-to="book"> Заказать услугу</button>
@@ -75,8 +73,8 @@ define(['jquery', 'react', 'reactDom', 'backbone', 'BookTimeModel'], function($,
                   <span className="bookForm-inputLabel"> Время начала (0 - 24) </span>
                   <input className="js-form-time bookForm-select bookForm-input--small" name="time" type="number" defaultValue="20"/>
                 </div>
-                <button className="js-send bookForm-submitButton">- Сделать заказ -</button>
-              </div> 
+                <button className="bookForm-submitButton" onClick={this.submit}>- Сделать заказ -</button>
+              </div>
             </div>
           </div>
           );
@@ -121,9 +119,6 @@ define(['jquery', 'react', 'reactDom', 'backbone', 'BookTimeModel'], function($,
       
       this.$(this.defaults.switchButtonSelector).removeClass(this.defaults.activeButtonClass);
       $button.addClass(this.defaults.activeButtonClass);
-    },
-    prvntPr: function(e) {
-      e.stopPropagation();
     }
   });
 
