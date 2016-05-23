@@ -1,4 +1,4 @@
-require.config({
+/*require.config({
 	paths: {
 		//libraries
     'text': 'libraries/text',
@@ -57,22 +57,21 @@ require.config({
 
 		'loaderView' : 'js/loaderView'
 	}
-});
+});*/
 
-require(['jquery', 'backbone', 'loaderView', 'Router'], function($, Backbone, LoaderView, Router) {
-	var router = new Router();
-	Backbone.history.start({ pushState: true });
-  
-	if (document.readyState !== "complete") {
-      var 	loaderView;
-      
-      $(window).load(function() {
-          loaderView.remove();
-      });
-      loaderView = new LoaderView();
-	}
-	
-	
+var Router = require('./js/Router.js');
+var LoaderView = require('./js/LoaderView.js');
 
-});
+var router = new Router();
+Backbone.history.start({ pushState: true });
+
+if (document.readyState !== "complete") {
+    var 	loaderView;
+
+    $(window).load(function() {
+        loaderView.remove();
+    });
+    loaderView = new LoaderView();
+}
+	
 

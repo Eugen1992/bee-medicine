@@ -1,4 +1,4 @@
-var ServiceCollectionViewCustomer,// = require('./client/js/Services/ServiceCollectionViewCustomer.js'),
+var ServiceCollectionViewCustomer = require('./Services/ServiceCollectionViewCustomer.js'),
     ContactsCollectionViewCustomer,
     BookTimeView,
     ServiceCollectionViewAdmin,
@@ -15,10 +15,12 @@ var ServiceCollectionViewCustomer,// = require('./client/js/Services/ServiceColl
 		},*/
 		home: function() {
       var serviceCollection = new ServiceCollection();
-      //var serviceCollectionView = new ServiceCollectionViewCustomer({collection: serviceCollection});
+      var serviceCollectionView = new ServiceCollectionViewCustomer({collection: serviceCollection});
+
+      $('.js-service-block').html(serviceCollectionView.el);
     }
 			/*var contactsCollectionView = new ContactsCollectionViewCustomer();
-			$('.js-service-block').html(serviceCollectionView.el);
+
 			$('.js-contact-block').html(contactsCollectionView.el);
 
 			$('.js-contact').click(function() {

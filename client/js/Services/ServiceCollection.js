@@ -1,10 +1,8 @@
+var Service = require('./ServiceModel.js');
 var ServiceCollection = Backbone.Collection.extend({
   idAttribute: '_id',
-  //model: Service,
-  url: '/services',
-  initialize: function () {
-    console.log('collection');
-  }
+  model: Service,
+  url: '/services'
 });
 	
-module.expprts = ServiceCollection;
+module.exports = ServiceCollection;

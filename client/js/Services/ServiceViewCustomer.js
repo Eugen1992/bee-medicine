@@ -1,18 +1,16 @@
-define(['jquery', 'underscore', 
-		'backbone', 'ServTemplCustomer'], function($, _, Backbone, serviceDepictTemplate) {	
-	var ServiceViewCustomer = Backbone.View.extend({
-		service: serviceDepictTemplate,
-		tagName: 'div',
-		className: 'js-service offer container',
+ServiceTemplate = require('./ServiceTemplateCustomer.js');
+var ServiceViewCustomer = Backbone.View.extend({
+  template: ServiceTemplate,
+  tagName: 'div',
+  className: 'js-service offer container',
 
-		initialize: function() {
-			this.render();
-		},
-		render: function() {
-			this.$el.html(this.service(this.model.toJSON()));
-			return this;
-		}
-	});
-
-	return ServiceViewCustomer;
+  initialize: function() {
+    this.render();
+  },
+  render: function() {
+    this.$el.html(this.template(this.model.toJSON()));
+    return this;
+  }
 });
+
+module.exports = ServiceViewCustomer;
