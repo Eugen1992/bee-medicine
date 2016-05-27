@@ -10,6 +10,19 @@ var config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query:
+        {
+          presets:['react']
+        }
+      }
+    ]
+  },
   watch: true,
   devtool: 'source-map'
 };
