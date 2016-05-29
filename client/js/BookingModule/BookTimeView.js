@@ -1,10 +1,7 @@
 var BookTimeModel = require('./BookTimeModel.js');
 
 class BookTimeView extends React.Component {
-  static submit() {
-    console.log('hooray');
-  } 
-  render () {
+  render() {
     return (
     <div className="bookForm-background">
     <div className=" bookForm">

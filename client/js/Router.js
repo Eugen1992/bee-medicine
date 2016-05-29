@@ -21,12 +21,11 @@ var Router = Backbone.Router.extend({
     $('.js-service-block').html(serviceCollectionView.el);
     /*var contactsCollectionView = new ContactsCollectionViewCustomer();
 
-    $('.js-contact-block').html(contactsCollectionView.el);*/
+     $('.js-contact-block').html(contactsCollectionView.el);*/
 
-
-    var bookTimeView = new bookingModule.View();
+    var BookTimeView = bookingModule.View;
     ReactDOM.render(
-      <bookTimeView />,
+      <BookTimeView />,
       $('.js-popupWrapper')[0]
     );
   }
