@@ -8,7 +8,7 @@ class BookTimeView extends React.Component {
     return ( 
     <div className="bookForm-background">
       <div className="bookForm">
-        <span className="js-cancel bookForm-closeSign">X</span>
+        <span className="bookForm-closeSign" onClick={this.props.onClose}>X</span>
         <div className="bookForm-switcher">
           <button className="bookForm-switchButton js-switchForm is-active" data-switch-to="book"> Заказать услугу</button>
           {/*<button className="bookForm-switchButton js-switchForm" data-switch-to="ask"> Задать вопрос</button>*/}

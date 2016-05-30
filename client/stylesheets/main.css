@@ -274,10 +274,14 @@ body {
   .big, .big-2 {
     width: 100%; } }
 
-.contact-btn {
+.contact {
   position: relative;
   display: inline-block;
-  padding: 2 4em;
+  text-align: center; }
+
+.contact-btn {
+  display: inline-block;
+  padding: 2px 4em;
   border-radius: 30px;
   font-family: Lato, "Open Sans Condensed", sans-serif;
   font-size: 24px;
@@ -325,7 +329,7 @@ body {
 .bookForm-message {
   display: none;
   position: relative;
-  margin: o auto;
+  margin: 0 auto;
   font-size: 20px;
   color: white;
   vertical-align: middle;
@@ -426,7 +430,8 @@ body {
   border-bottom: solid 1px white;
   text-align: center;
   font-family: "Courier New";
-  outline: none; }
+  outline: none;
+  cursor: pointer; }
 
 .bookForm-input--small {
   display: inline-block;
@@ -447,7 +452,7 @@ body {
   padding: 14px 10px;
   outline: none;
   border: none;
-  text-decoration: uppercase;
+  text-transform: uppercase;
   color: #202A47; }
 
 @media only screen and (max-width: 1024px) {

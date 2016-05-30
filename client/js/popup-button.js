@@ -11,13 +11,16 @@ class PopupButton extends React.Component {
   showPopup() {
     this.setState({isOpened: true});
   }
+  closePopup() {
+    this.setState({isOpened: false});
+  }
   render() {
     return(
-      <div className="contact-btn contact-btn-top" data-state="book">
-        <div onClick={this.showPopup.bind(this)}>Заказать услугу</div>
+      <div className="contact"> 
+        <div className="contact-btn contact-btn-top" onClick={this.showPopup.bind(this)}>Заказать услугу</div>
         {
           this.state.isOpened
-            ? <BookTimeView />
+            ? <BookTimeView onClose = {this.closePopup.bind(this)}/>
             : null
         }
       </div>

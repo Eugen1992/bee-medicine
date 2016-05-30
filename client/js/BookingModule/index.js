@@ -1,6 +1,6 @@
 var bookingModule = {
   Model: require('./BookTimeModel.js'),
-  View: require('./BookTimeView.js')
+  View: require('./book-time-view.js') 
 }
 
 module.exports = bookingModule;
