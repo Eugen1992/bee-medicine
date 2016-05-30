@@ -1,5 +1,6 @@
 var servicesModule = require('./Services'),
     bookingModule = require('./BookingModule'),
+    Layout = require('./layout'),
     ContactsCollectionViewCustomer,
     BookTimeView,
     ServiceCollectionViewAdmin,
@@ -15,18 +16,18 @@ var Router = Backbone.Router.extend({
     Backbone.Mediator.subscribe('navigate', this.navigate, this);
   },*/
   home: function() {
-    var serviceCollection = new servicesModule.Collection();
-    var serviceCollectionView = new servicesModule.CollectionViewCustomer({collection: serviceCollection});
+    //var BookTimeView = bookingModule.View;
+    //var serviceCollection = new servicesModule.Collection();
+    //var serviceCollectionView = new servicesModule.CollectionViewCustomer({collection: serviceCollection});
 
-    $('.js-service-block').html(serviceCollectionView.el);
+    //$('.js-service-block').html(serviceCollectionView.el);
     /*var contactsCollectionView = new ContactsCollectionViewCustomer();
 
      $('.js-contact-block').html(contactsCollectionView.el);*/
 
-    var BookTimeView = bookingModule.View;
     ReactDOM.render(
-      <BookTimeView />,
-      $('.js-popupWrapper')[0]
+      <Layout />,
+      document.getElementById('app-wrapper')
     );
   }
   /*admin: function() {
