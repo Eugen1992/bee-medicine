@@ -1,5 +1,5 @@
 var bookingModule = {
-  Model: require('./BookTimeModel.js'),
+  Store: require('./book-time-store.js'),
   View: require('./book-time-view.js') 
 }
 

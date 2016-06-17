@@ -24,7 +24,6 @@ var Router = Backbone.Router.extend({
     /*var contactsCollectionView = new ContactsCollectionViewCustomer();
 
      $('.js-contact-block').html(contactsCollectionView.el);*/
-
     ReactDOM.render(
       <Layout />,
       document.getElementById('app-wrapper')

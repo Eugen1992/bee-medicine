@@ -1,28 +1,37 @@
-var BookTimeModel = require('./BookTimeModel.js');
+const appDispathcer = require('./../dispatcher.js');
+const bookTimeStore = require('./book-time-store.js');
 
 class BookTimeView extends React.Component {
-  close() {
-
+  constructor(props) {
+    super(props);
+    this.render = this.render.bind(this);
+  }
+  onChange(event) {
+    appDispathcer.dispatch({
+      actionType: 'booking-time-update',
+      field: event.target.name,
+      value: event.target.value
+    });
   }
   render() {
-    return ( 
+    return (
     <div className="bookForm-background">
       <div className="bookForm">
         <span className="bookForm-closeSign" onClick={this.props.onClose}>X</span>
         <div className="bookForm-switcher">
-          <button className="bookForm-switchButton js-switchForm is-active" data-switch-to="book"> Заказать услугу</button>
+          <button className="bookForm-switchButton js-switchForm is-active" data-switch-to="book">Заказать услугу</button>
           {/*<button className="bookForm-switchButton js-switchForm" data-switch-to="ask"> Задать вопрос</button>*/}
         </div>
         <div className="bookForm-message bookForm-loading"> Минуту, мы уточняем не заняты ли пчелы...</div>
         <div className="bookForm-message bookForm-success"> Спасибо за Ваш заказ, мы скоро с вами свяжемся.</div>
         <div className="bookForm-message bookForm-error"> Произошла ошибка, попробуйте еще раз.</div>
         <div className="bookForm-form" data-form="book">
-          <input type="text" className="js-form-name bookForm-input" placeholder="Введите ваше имя"/>
-          <input type="text" required="true" className="js-form-phone bookForm-input" placeholder="Введите ваш номер телефона"/>
+          <input name="name" type="text" className="bookForm-input" onChange={this.onChange.bind(this)} placeholder="Введите ваше имя" value={this.props.currentBooking.name}/>
+          <input name="phone" type="text" className="js-form-phone bookForm-input" onChange={this.onChange.bind(this)} placeholder="Введите ваш номер телефона"/>
           <span className="bookForm-label"> Выберите дату и время </span>
           <div className="bookForm-inputWrapper">
             <span className="bookForm-inputLabel"> Число </span>
-            <input className="js-form-day bookForm-input bookForm-input--small" name="day"   defaultValue="5" placeholder="Число" type="number"/>
+            <input  name="day" className="js-form-day bookForm-input bookForm-input--small" onChange={this.onChange.bind(this)} defaultValue="5" placeholder="Число" type="number"/>
           </div>
           <div className="bookForm-inputWrapper">
             <span className="bookForm-inputLabel"> Месяц </span>
@@ -56,7 +65,7 @@ class BookTimeView extends React.Component {
       </div>
     </div>
     );
-  }
+  }s
 }
 
 module.exports = BookTimeView;
