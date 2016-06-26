@@ -1,5 +1,4 @@
 var servicesModule = require('./Services'),
-    bookingModule = require('./BookingModule'),
     App = require('./app'),
     ContactsCollectionViewCustomer,
     BookTimeView,
