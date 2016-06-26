@@ -1,4 +1,4 @@
-var BookTimeView = require('./BookingModule').View;
+const BookTimeView = require('./BookingModule').View;
 
 class PopupButton extends React.Component {
   constructor(props, context) {
@@ -6,7 +6,6 @@ class PopupButton extends React.Component {
     this.state = {
       isOpened: false
     };
-
   }
   showPopup() {
     this.setState({isOpened: true});
@@ -16,11 +15,14 @@ class PopupButton extends React.Component {
   }
   render() {
     return(
-      <div className="contact"> 
-        <div className="contact-btn contact-btn-top" onClick={this.showPopup.bind(this)}>Заказать услугу</div>
+      <div className="contact" >
+        <div className={"contact-btn contact-btn-" + this.props.colorTheme}
+             onClick={this.showPopup.bind(this)}>Заказать услугу</div>
         {
           this.state.isOpened
-            ? <BookTimeView onClose = {this.closePopup.bind(this)}/>
+            ? <BookTimeView
+              bookingInProcess = {this.props.bookingInfo.bookingInProcess}
+              onClose = {this.closePopup.bind(this)}/>
             : null
         }
       </div>

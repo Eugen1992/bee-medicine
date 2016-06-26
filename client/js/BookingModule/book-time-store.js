@@ -1,10 +1,14 @@
 var appDispathcer = require('./../dispatcher.js');
 var EventEmitter = require('events').EventEmitter;
 
-let _currentBooking = {
-  name: '',
-  phone1: '',
-  day: 1
+const date = new Date();
+let _bookingInProcess = {
+  customerName: '',
+  customerPhone: '',
+  year: date.getFullYear(),
+  month: date.getMonth()+1,
+  day: date.getDate() + 1,
+  time: 18
 };
 
 let validationRules = {
@@ -12,8 +16,17 @@ let validationRules = {
 };
 
 class BookTimeStore extends EventEmitter {
-  getCurrentBooking() {
-    return _currentBooking;
+  getBookingInProcess() {
+    return _bookingInProcess;
+  }
+  saveBooking() {
+    $.post('/contacts',
+      _bookingInProcess
+    ).done(function (data) {
+      console.log(data);
+    }).fail(function (data) {
+      console.log(data);
+    })
   }
 }
 const bookTimeStore = new BookTimeStore();
@@ -21,13 +34,12 @@ const bookTimeStore = new BookTimeStore();
 appDispathcer.register((action) => {
   switch(action.actionType) {
     case 'booking-time-update':
-      _currentBooking[action.field] = action.value;
+      _bookingInProcess[action.field] = action.value;
       bookTimeStore.emit('updated');
-      console.log(_currentBooking);
       break;
     case 'booking-time-save':
-      data[action.field] = action.value;
-      bookTimeStore.emit('updated');
+      bookTimeStore.saveBooking();
+      bookTimeStore.emit('starting-to-save');
       break;
 
   }

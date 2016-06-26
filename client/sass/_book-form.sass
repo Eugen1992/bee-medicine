@@ -10,14 +10,14 @@
   &:hover
     cursor: pointer
 
-.contact-btn-top    
+.contact-btn-light
   vertical-align: bottom
   margin-bottom: 30px    
   border: 2px solid $white
   text-align: center 
   box-sizing: border-box   
     
-.contact-btn-bottom
+.contact-btn-dark
   background: $main_color
   text-align: center
   box-sizing: border-box
@@ -35,14 +35,15 @@
   cursor: default
 .bookForm
   position: relative
+  box-sizing: border-box
+  overflow-y: auto
   width: 60%
   top: 50px
-  overflow-y: auto
   margin: 0 auto
   background: $darkBlue
+  line-height: normal
   padding: 105px 10% 30px 10%
   font-family: 'Courier New'
-  box-sizing: border-box
 .bookForm-message
   display: none
   position: relative
@@ -115,6 +116,7 @@
   
 .bookForm-input  
   display: block
+  box-sizing: border-box
   vertical-align: middle
   margin: 0 auto 10px
   background: transparent
@@ -126,12 +128,13 @@
   outline: none 
 .bookForm-closeSign
   position: absolute
+  z-index: 2
   color: white
   top: 8px
   cursor: pointer
   right: 8px
   font-family: "Arial"
-  font-size: 12px
+  font-size: 16px
 .bookForm-select
   display: block
   margin: 0 auto

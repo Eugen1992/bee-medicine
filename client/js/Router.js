@@ -1,6 +1,6 @@
 var servicesModule = require('./Services'),
     bookingModule = require('./BookingModule'),
-    Layout = require('./layout'),
+    App = require('./app'),
     ContactsCollectionViewCustomer,
     BookTimeView,
     ServiceCollectionViewAdmin,
@@ -25,7 +25,7 @@ var Router = Backbone.Router.extend({
 
      $('.js-contact-block').html(contactsCollectionView.el);*/
     ReactDOM.render(
-      <Layout />,
+      <App />,
       document.getElementById('app-wrapper')
     );
   }

@@ -1,41 +1,47 @@
 var underscore = _ = require("underscore");
 var nodemailer = require("nodemailer");
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'beesmedicine@gmail.com',
+    pass: 'bees1962'
+  }
+});
 
-function controller(app) {
-  var transporter = nodemailer.createTransport({
-   service: 'Gmail',
-   auth: {
-       user: 'beesmedicine@gmail.com',
-       pass: 'bees1962'
-   }
- });
-  
-  app.post("/contact/booktime", function(req, res){ 
-    var recieversAdreses = [];
-
+var mailer = {
+  sendOrderToAdmin: function (req, orderDetails) {
+    var recieversAdreses = ['eugenalforov@gmail.com'];
+    var result;
     req.db.collection('receivers').
-      find({}).
-      toArray(function (err, records) {
-        var joinedAdreses = records.map(function (receiver) { return receiver.recieverAdress }).join(', ');
-    
-        var mailOptions = {
-         from: 'Сон на ульях  <beesmedicine@gmail.com>', // sender address
-         to: joinedAdreses, // list of receivers
-         subject: 'Заказ времени и услуги', // Subject line
-         text: 'Заказ  ' + '\n\n' + 'Имя клиента: ' + req.body.customerName + '\n\n' +  'Контактный номер телефона: ' + req.body.customerPhone + '\n\n' + 'Дата: ' + req.body.year + '.' + req.body.month + '.'  + req.body.day + '\n\n' + 'Время: ' + req.body.time // plaintext body
-        }
+    find({}).
+    toArray(function (err, receivers) {
+      var joinedAdreses = receivers.map(function (receiver) { return receiver.recieverAdress }).join(', ');
 
-        transporter.sendMail(mailOptions, function(error, info){ 
-         if (error) {
-           res.sendStatus(500);
-         } else {
-           res.send(JSON.stringify(req.body));
-         }
+      var mailOptions = {
+        from: 'Сон на ульях  <beesmedicine@gmail.com>', // sender address
+        to: 'eugenalforov@gmail.com', // list of receivers
+        subject: 'Заказ времени и услуги', // Subject line
+        text: generateText(orderDetails)
+      }
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          result = 'error';
+        } else {
+          result = 'success';
+        }
       });
     });
+  }
+};
 
-    
-  });
+function generateText (options) {
+  return 'Имя клиента: ' +
+    options.customerName + '\n\n' +
+    'Контактный номер телефона: ' +
+    options.customerPhone + '\n\n' +
+    'Дата: ' + options.year + '.' +
+    options.month + '.'  + options.day + '\n\n' + 'Время: ' + options.time;
 }
 
-module.exports.controller = controller;
+module.exports = mailer;

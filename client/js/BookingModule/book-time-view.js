@@ -1,5 +1,4 @@
 const appDispathcer = require('./../dispatcher.js');
-const bookTimeStore = require('./book-time-store.js');
 
 class BookTimeView extends React.Component {
   constructor(props) {
@@ -13,10 +12,18 @@ class BookTimeView extends React.Component {
       value: event.target.value
     });
   }
+  submit() {
+    appDispathcer.dispatch({
+      actionType: 'booking-time-save'
+    });
+  }
+  stopPropagation(e) {
+    e.stopPropagation();
+  }
   render() {
     return (
-    <div className="bookForm-background">
-      <div className="bookForm">
+    <div className="bookForm-background" onClick={this.props.onClose}>
+      <div className="bookForm" onClick={this.stopPropagation.bind(this)}>
         <span className="bookForm-closeSign" onClick={this.props.onClose}>X</span>
         <div className="bookForm-switcher">
           <button className="bookForm-switchButton js-switchForm is-active" data-switch-to="book">Заказать услугу</button>
@@ -26,16 +33,16 @@ class BookTimeView extends React.Component {
         <div className="bookForm-message bookForm-success"> Спасибо за Ваш заказ, мы скоро с вами свяжемся.</div>
         <div className="bookForm-message bookForm-error"> Произошла ошибка, попробуйте еще раз.</div>
         <div className="bookForm-form" data-form="book">
-          <input name="name" type="text" className="bookForm-input" onChange={this.onChange.bind(this)} placeholder="Введите ваше имя" value={this.props.currentBooking.name}/>
-          <input name="phone" type="text" className="js-form-phone bookForm-input" onChange={this.onChange.bind(this)} placeholder="Введите ваш номер телефона"/>
+          <input name="customerName" type="text" className="bookForm-input" onChange={this.onChange.bind(this)} placeholder="Введите ваше имя" defaultValue={this.props.bookingInProcess.customerName}/>
+          <input name="customerPhone" type="text" className="js-form-phone bookForm-input" onChange={this.onChange.bind(this)} placeholder="Введите ваш номер телефона" defaultValue={this.props.bookingInProcess.customerPhone}/>
           <span className="bookForm-label"> Выберите дату и время </span>
           <div className="bookForm-inputWrapper">
             <span className="bookForm-inputLabel"> Число </span>
-            <input  name="day" className="js-form-day bookForm-input bookForm-input--small" onChange={this.onChange.bind(this)} defaultValue="5" placeholder="Число" type="number"/>
+            <input name="day" className="js-form-day bookForm-input bookForm-input--small" onChange={this.onChange.bind(this)} defaultValue={this.props.bookingInProcess.day} placeholder="Число" type="number"/>
           </div>
           <div className="bookForm-inputWrapper">
             <span className="bookForm-inputLabel"> Месяц </span>
-            <select className="js-form-month bookForm-select bookForm-input--small" name="month" defaultValue="5" placeholder="Месяц" >
+            <select className="js-form-month bookForm-select bookForm-input--small" name="month" defaultValue={this.props.bookingInProcess.month} placeholder="Месяц" >
             <option value="1"> Январь </option>
             <option value="2"> Февраль </option>
             <option value="3"> Март </option>
@@ -50,7 +57,7 @@ class BookTimeView extends React.Component {
             <option value="12"> Февраль </option>
             </select>
             <span className="bookForm-inputLabel"> Год </span>
-            <select className="js-form-year bookForm-select bookForm-input--small" name="year" defaultValue="2016" placeholder="Год" >
+            <select className="js-form-year bookForm-select bookForm-input--small" name="year" defaultValue={this.props.bookingInProcess.year} placeholder="Год" >
             <option value="2016"> 2016 </option>
             <option value="2017"> 2017 </option>
             <option value="2018"> 2018 </option>
@@ -58,9 +65,9 @@ class BookTimeView extends React.Component {
           </div>
           <div className="bookForm-inputWrapper">
             <span className="bookForm-inputLabel"> Время начала (0 - 24) </span>
-            <input className="js-form-time bookForm-select bookForm-input--small" name="time" type="number" defaultValue="20"/>
+            <input className="js-form-time bookForm-select bookForm-input--small" name="time" type="number" defaultValue={this.props.bookingInProcess.time}/>
           </div>
-          <button className="bookForm-submitButton" onClick={this.submit}>- Сделать заказ -</button>
+          <button className="bookForm-submitButton" onClick={this.submit.bind(this)}>- Сделать заказ -</button>
         </div>
       </div>
     </div>

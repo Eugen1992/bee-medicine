@@ -1,3 +1,5 @@
+var mailer = require('./mailer.js');
+
 function controller(app) {
   app.get("/contacts", function(req, res) { 
     req.db.collection('contacts').
@@ -42,13 +44,14 @@ function controller(app) {
       });
    });
 
-   app.post("/contacts", function(req, res){                                    
+   app.post("/contacts", function(req, res){
      req.db.collection('contacts').
       insertOne(req.body, {}, function (err, result) {
         if (err) {
           res.sendStatus(500);
         } else {
-          res.sendStatus(200);
+          mailer.sendOrderToAdmin(req, result.ops[0]);
+          res.send({status: 200, contact: result.ops[0]});
         }
       });
    });

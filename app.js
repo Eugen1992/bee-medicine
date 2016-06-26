@@ -1,7 +1,6 @@
 var express = require("express");
 var underscore = _ = require("underscore");
 var bodyParser = require("body-parser");
-var mailer = require('./controllers/mailer.js');
 var serviceController = require('./controllers/services.js');
 var contactController = require('./controllers/contacts.js');
 var receiversController = require('./controllers/receivers.js');
@@ -11,9 +10,13 @@ var MongoClient = mongoDb.MongoClient;
 var ObjectId = mongoDb.ObjectID;
 
 process.env.PWD = process.cwd();
-var herokuDB = 'mongodb://heroku_j3fmzffv:9c4o9d1fad6h19p1abs7fl1u6g@ds011880.mlab.com:11880/heroku_j3fmzffv';
+//mongodb://heroku_j3fmzffv:<dbpassword>@ds011880.mlab.com:11880/heroku_j3fmzffv
+var herokuDB = 'mongodb://heroku_j3fmzffv:gagar1506@ds011880.mlab.com:11880/heroku_j3fmzffv';
 var localDB = 'mongodb://localhost:27017';
-MongoClient.connect(herokuDB, function (err, db) {
+MongoClient.connect(localDB, function (err, db) {
+  if (err) {
+    console.log(err);
+  }
   app.use(function(req,res,next){
     req.db = db;
     req.ObjectId = ObjectId;
@@ -21,7 +24,6 @@ MongoClient.connect(herokuDB, function (err, db) {
   });
   serviceController.controller(app);
   contactController.controller(app);
-  mailer.controller(app);
   receiversController.controller(app);
 });
 

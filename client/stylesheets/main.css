@@ -290,14 +290,14 @@ body {
   .contact-btn:hover {
     cursor: pointer; }
 
-.contact-btn-top {
+.contact-btn-light {
   vertical-align: bottom;
   margin-bottom: 30px;
   border: 2px solid #fff;
   text-align: center;
   box-sizing: border-box; }
 
-.contact-btn-bottom {
+.contact-btn-dark {
   background: #3c3c3c;
   text-align: center;
   box-sizing: border-box;
@@ -317,14 +317,15 @@ body {
 
 .bookForm {
   position: relative;
+  box-sizing: border-box;
+  overflow-y: auto;
   width: 60%;
   top: 50px;
-  overflow-y: auto;
   margin: 0 auto;
   background: #202A47;
+  line-height: normal;
   padding: 105px 10% 30px 10%;
-  font-family: 'Courier New';
-  box-sizing: border-box; }
+  font-family: 'Courier New'; }
 
 .bookForm-message {
   display: none;
@@ -400,6 +401,7 @@ body {
 
 .bookForm-input {
   display: block;
+  box-sizing: border-box;
   vertical-align: middle;
   margin: 0 auto 10px;
   background: transparent;
@@ -412,12 +414,13 @@ body {
 
 .bookForm-closeSign {
   position: absolute;
+  z-index: 2;
   color: white;
   top: 8px;
   cursor: pointer;
   right: 8px;
   font-family: "Arial";
-  font-size: 12px; }
+  font-size: 16px; }
 
 .bookForm-select {
   display: block;
