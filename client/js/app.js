@@ -1,12 +1,16 @@
 const BookTimeStore = require('./stores/book-time-store');
+const ServicesStore = require('./stores/services-store');
 const PopupButton = require('./components/popup-button');
 const Header = require('./components/header');
 const About = require('./components/about');
 const AboutServices = require('./components/about-services');
-const Services = require('./components/about-services');
+const Services = require('./components/services');
 const Gallery = require('./components/gallery');
 
 class App extends React.Component {
+  getServicesInfo() {
+    return  ServicesStore.getServices();
+  }
   getBookingInfo() {
     return {
       bookingInProcess: BookTimeStore.getBookingInProcess()
@@ -18,9 +22,8 @@ class App extends React.Component {
       <Header bookingInfo = {this.getBookingInfo()} />
       <About/>
       <AboutServices/>
-      <Services/>
+      <Services servicesInfo = {this.getServicesInfo()} />
       <Gallery/>
-
       <div className="container js-footer">
         <div className="headline dark-style">Контакты</div>
         <div className="external-block dark-frame">

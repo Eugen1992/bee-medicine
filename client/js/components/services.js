@@ -3,10 +3,24 @@ class Services extends React.Component {
     return(
       <div className="container">
         <div className="headline dark-style">Сон на ульях</div>
-        <div className="external-block dark-frame">
-        </div>
+        {this.getListOfServices()}
       </div>
     )
+  }
+  getListOfServices() {
+    var list = [];
+    this.props.servicesInfo.data.forEach(function (service, index) {
+      list.push(
+        <div className="external-block dark-frame" key="index">
+          <span><img src="../images/clock2.png" alt="service logo" /></span><br/>
+          <span class="service-headline">{service.serviceName}</span> <br/>
+          <span class="sub-headline">{service.price}грн</span><br/>
+          <span class="descriptionCustom">{service.description}</span><br/>
+        </div>
+      );
+    });
+
+    return list;
   }
 }
 

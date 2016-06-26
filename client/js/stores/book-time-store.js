@@ -1,12 +1,12 @@
-var appDispathcer = require('./../dispatcher.js');
-var EventEmitter = require('events').EventEmitter;
+const appDispathcer = require('./../dispatcher.js');
+const EventEmitter = require('events').EventEmitter;
 
 const date = new Date();
 let _bookingInProcess = {
   customerName: '',
   customerPhone: '',
   year: date.getFullYear(),
-  month: date.getMonth()+1,
+  month: date.getMonth() + 1,
   day: date.getDate() + 1,
   time: 18
 };

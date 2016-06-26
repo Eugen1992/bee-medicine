@@ -1,23 +1,36 @@
-var appDispathcer = require('./../dispatcher.js');
-var EventEmitter = require('events').EventEmitter;
+const appDispathcer = require('./../dispatcher.js');
+const webApiUtils = require('./../web-api-utils.js');
+const EventEmitter = require('events').EventEmitter;
 
-const date = new Date();
-let _bookingInProcess = {
-  customerName: '',
-  customerPhone: '',
-  year: date.getFullYear(),
-  month: date.getMonth()+1,
-  day: date.getDate() + 1,
-  time: 18
-};
+let services = [
+  {
+    serviceName: '1 hour',
+    price: 0,
+    description: '1 hour of good and healthy sleep'
+  }];
 
-let validationRules = {
-  name: /^[0-9]{7,}$/
-};
+let isFetched = false;
+class ServicesStore extends EventEmitter {
+  isFetched() {
+    return isFetched;
+  }
+  getServices() {
+    if (isFetched) {
+      this.fetch();
+      return {
+        status: 'fethcing',
+        data: null
+      }
+    }
+    return {
+      status: 'fetched',
+      data: services
+    }
 
-class BookTimeStore extends EventEmitter {
-  getBookingInProcess() {
-    return _bookingInProcess;
+  }
+  fetch() {
+    isFetched = true;
+    servicesStore.emit('updated');
   }
   saveBooking() {
     $.post('/contacts',
@@ -28,20 +41,15 @@ class BookTimeStore extends EventEmitter {
     })
   }
 }
-const bookTimeStore = new BookTimeStore();
+const servicesStore = new ServicesStore();
 
 appDispathcer.register((action) => {
   switch(action.actionType) {
-    case 'booking-time-update':
-      _bookingInProcess[action.field] = action.value;
-      bookTimeStore.emit('updated');
+    case 'service-update':
+      //update service
+      servicesStore.emit('updated');
       break;
-    case 'booking-time-save':
-      bookTimeStore.saveBooking();
-      bookTimeStore.emit('starting-to-save');
-      break;
-
   }
 });
 
-module.exports = bookTimeStore;
+module.exports = servicesStore;
