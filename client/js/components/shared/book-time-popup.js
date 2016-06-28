@@ -1,10 +1,6 @@
 const appDispathcer = require('./../../dispatcher.js');
 
 class BookTimeView extends React.Component {
-  constructor(props) {
-    super(props);
-    this.render = this.render.bind(this);
-  }
   onChange(event) {
     appDispathcer.dispatch({
       actionType: 'booking-time-update',

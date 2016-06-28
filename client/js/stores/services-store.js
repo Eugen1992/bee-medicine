@@ -2,14 +2,21 @@ const appDispathcer = require('./../dispatcher.js');
 const webApiUtils = require('./../web-api-utils.js');
 const EventEmitter = require('events').EventEmitter;
 
-let services = [
+let _services = [
   {
     serviceName: '1 hour',
     price: 0,
     description: '1 hour of good and healthy sleep'
   }];
 
+let _newService = {
+    serviceName: '',
+    price: '',
+    description: ''
+  };
+
 let isFetched = false;
+
 class ServicesStore extends EventEmitter {
   isFetched() {
     return isFetched;
@@ -24,18 +31,24 @@ class ServicesStore extends EventEmitter {
     }
     return {
       status: 'fetched',
-      data: services
+      data: _services
     }
-
   }
-  saveBooking() {
-    $.post('/contacts',
-      _bookingInProcess
+  saveNewService() {
+    $.post('/services',
+      _newService
     ).done(function (data) {
-      console.log(data);
+      let _newService = {
+        serviceName: '',
+        price: 0,
+        description: ''};
+      this.addService(data);
     }).fail(function (data) {
       console.log(data);
     })
+  }
+  addService(service) {
+    _services.push(service);
   }
 }
 const servicesStore = new ServicesStore();
@@ -51,6 +64,15 @@ appDispathcer.register((action) => {
   switch(action.actionType) {
     case 'service-update':
       //update service
+      servicesStore.emit('updated');
+      break;
+    case 'new-service-update':
+      _newService[action.field] = action.value;
+      console.log(_newService);
+      servicesStore.emit('new-service-updated');
+      break;
+    case 'new-service-save':
+      servicesStore.saveNewService();
       servicesStore.emit('updated');
       break;
   }
