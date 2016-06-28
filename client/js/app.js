@@ -6,13 +6,14 @@ const About = require('./components/about');
 const AboutServices = require('./components/about-services');
 const Services = require('./components/services');
 const Gallery = require('./components/gallery');
+const Footer = require('./components/footer');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = this.getState();
     ServicesStore.on('updated', this.updateServices.bind(this));
-    BookTimeStore.on('updated', this.updateServices.bind(this));
+    BookTimeStore.on('updated', this.updateBooking.bind(this));
   }
   getState() {
     return {
@@ -38,14 +39,7 @@ class App extends React.Component {
       <AboutServices/>
       <Services servicesInfo = {this.state.services} />
       <Gallery/>
-      <div className="container js-footer">
-        <div className="headline dark-style">Контакты</div>
-        <div className="external-block dark-frame">
-          <PopupButton
-            colorTheme="dark"
-            bookingInfo = {this.state.booking}/>
-        </div>
-      </div>
+      <Footer bookingInfo = {this.state.booking} />
     </div>
     )
   }
