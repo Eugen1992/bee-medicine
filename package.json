@@ -17,6 +17,9 @@
     "grunt-sass": "1.1.0",
     "mongodb": "^2.1.7",
     "nodemailer": "^1.8.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.5.1",
     "underscore": "^1.8.3",
     "webpack": "^1.13.0"
   },

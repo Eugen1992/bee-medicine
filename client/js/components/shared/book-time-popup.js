@@ -1,4 +1,4 @@
-const appDispathcer = require('./../dispatcher.js');
+const appDispathcer = require('./../../dispatcher.js');
 
 class BookTimeView extends React.Component {
   constructor(props) {
