@@ -16,8 +16,10 @@ let validationRules = {
 };
 
 class BookTimeStore extends EventEmitter {
-  getBookingInProcess() {
-    return _bookingInProcess;
+  getBookingInfo() {
+    return {
+      bookingInProcess: _bookingInProcess
+    };
   }
   saveBooking() {
     $.post('/contacts',

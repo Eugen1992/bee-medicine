@@ -8,28 +8,42 @@ const Services = require('./components/services');
 const Gallery = require('./components/gallery');
 
 class App extends React.Component {
-  getServicesInfo() {
-    return  ServicesStore.getServices();
+  constructor(props) {
+    super(props);
+    this.state = this.getState();
+    ServicesStore.on('updated', this.updateServices.bind(this));
+    BookTimeStore.on('updated', this.updateServices.bind(this));
   }
-  getBookingInfo() {
+  getState() {
     return {
-      bookingInProcess: BookTimeStore.getBookingInProcess()
+      services: ServicesStore.getServices(),
+      booking: BookTimeStore.getBookingInfo()
     }
+  }
+  updateServices() {
+    this.setState({
+      services: ServicesStore.getServices()
+    })
+  }
+  updateBooking() {
+    this.setState({
+      booking: BookTimeStore.getBookingInfo()
+    })
   }
   render() {
     return (
     <div className="main">
-      <Header bookingInfo = {this.getBookingInfo()} />
+      <Header bookingInfo = {this.state.booking} />
       <About/>
       <AboutServices/>
-      <Services servicesInfo = {this.getServicesInfo()} />
+      <Services servicesInfo = {this.state.services} />
       <Gallery/>
       <div className="container js-footer">
         <div className="headline dark-style">Контакты</div>
         <div className="external-block dark-frame">
           <PopupButton
             colorTheme="dark"
-            bookingInfo = {this.getBookingInfo()}/>
+            bookingInfo = {this.state.booking}/>
         </div>
       </div>
     </div>

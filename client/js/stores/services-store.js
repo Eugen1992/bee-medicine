@@ -15,8 +15,8 @@ class ServicesStore extends EventEmitter {
     return isFetched;
   }
   getServices() {
-    if (isFetched) {
-      this.fetch();
+    if (!isFetched) {
+      fetchServices();
       return {
         status: 'fethcing',
         data: null
@@ -28,20 +28,24 @@ class ServicesStore extends EventEmitter {
     }
 
   }
-  fetch() {
-    isFetched = true;
-    servicesStore.emit('updated');
-  }
   saveBooking() {
     $.post('/contacts',
       _bookingInProcess
     ).done(function (data) {
       console.log(data);
     }).fail(function (data) {
+      console.log(data);
     })
   }
 }
 const servicesStore = new ServicesStore();
+
+function fetchServices () {
+  setTimeout(function () {
+    isFetched = true;
+    servicesStore.emit('updated');
+  }, 5000);
+}
 
 appDispathcer.register((action) => {
   switch(action.actionType) {
