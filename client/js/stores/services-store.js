@@ -50,6 +50,11 @@ class ServicesStore extends EventEmitter {
     _services.push(service);
     servicesStore.emit('updated');
   }
+  deleteService(service) {
+    let index = _.findIndex(_services, service);
+    _services.splice(index, 1);
+    servicesStore.emit('updated');
+  }
 }
 const servicesStore = new ServicesStore();
 
@@ -79,6 +84,17 @@ function saveNewService () {
     console.log(data);
   })
 }
+function deleteService (service) {
+  $.ajax({
+    url: '/services/' + service._id,
+    type: 'DELETE'})
+    .done(function () {
+      servicesStore.deleteService(service);
+    })
+    .fail(function(error) {
+      console.log(error);
+    });
+}
 appDispathcer.register((action) => {
   switch(action.actionType) {
     case 'service-update':
@@ -92,6 +108,8 @@ appDispathcer.register((action) => {
     case 'new-service-save':
       saveNewService();
       break;
+    case 'service-delete':
+      deleteService(action.service);
   }
 });
 

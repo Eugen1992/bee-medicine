@@ -1,4 +1,4 @@
-var mailer = require('./mailer.js');
+const mailer = require('./mailer.js');
 
 function controller(app) {
   app.get("/contacts", function(req, res) { 
@@ -21,11 +21,11 @@ function controller(app) {
       });
   });
   
-  app.delete("/contacts/:id", function(req, res) { 
+  app.delete("/contacts/:id", function(req, res) {
     req.db.collection('contacts').
-      deleteOne({'_id': req.ObjectId(req.params.id)}, function (err, numberOfDeleted) {
+      deleteOne({'_id': req.ObjectId(req.params._id)}, function (err, numberOfDeleted) {
         if (err) {
-          res.sendStatus(500);  
+          res.sendStatus(500);
         } else {
           res.sendStatus(200);
         }

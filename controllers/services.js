@@ -6,7 +6,7 @@ function controller(app) {
         res.send(records);
       });
   });
-  app.get("/services/:id", function(req, res) { 
+  app.get("/services:id", function(req, res) {
     req.db.collection('services').
       find({'_id': req.ObjectId(req.params.id)}).
       limit(1).
@@ -19,7 +19,7 @@ function controller(app) {
       });
   });
   
-  app.delete("/services/:id", function(req, res) { 
+  app.delete("/services/:id", function(req, res) {
     req.db.collection('services').
       deleteOne({'_id': req.ObjectId(req.params.id)}, function (err, numberOfDeleted) {
         if (err) {
