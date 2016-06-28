@@ -2,20 +2,21 @@ const AddService = require('./add-service');
 
 class Services extends React.Component {
   render() {
+    console.log(this.props);
     return(
       <div className="container">
         <div className="headline dark-style">Сон на ульях</div>
         <div className="external-block dark-frame">
           {this.getListOfServices()}
-          <AddService/>
+          <AddService currentNewService = {this.props.services.currentNewService}/>
         </div>
       </div>
     )
   }
   getListOfServices() {
     var list = [];
-    if (this.props.servicesInfo.data) {
-      this.props.servicesInfo.data.forEach(function (service, index) {
+    if (this.props.services.data) {
+      this.props.services.data.forEach(function (service, index) {
         list.push(
           <div key={index}>
             <span><img src="../images/clock2.png" alt="service logo"/></span><br/>

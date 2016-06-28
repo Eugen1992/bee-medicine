@@ -25,7 +25,7 @@ class AdminContent extends React.Component {
       <div className="content">
         <About/>
         <AboutServices/>
-        <Services servicesInfo = {this.state.services} />
+        <Services services={this.state.services} />
         <Gallery/>
       </div>
     )

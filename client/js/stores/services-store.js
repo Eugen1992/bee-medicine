@@ -4,62 +4,81 @@ const EventEmitter = require('events').EventEmitter;
 
 let _services = [
   {
-    serviceName: '1 hour',
+    name: '1 hour',
     price: 0,
     description: '1 hour of good and healthy sleep'
   }];
 
-let _newService = {
-    serviceName: '',
+let _currentNewService = {
+    name: '',
     price: '',
     description: ''
   };
 
-let isFetched = false;
+let _isFetched = false;
+let _isFetching = false;
 
 class ServicesStore extends EventEmitter {
   isFetched() {
-    return isFetched;
+    return _isFetched;
   }
   getServices() {
-    if (!isFetched) {
+    let result;
+    if (!_isFetched && !_isFetching) {
       fetchServices();
-      return {
-        status: 'fethcing',
-        data: null
+      result = {
+        status: 'fetching',
+        data: null,
+        currentNewService: _currentNewService
+      }
+    } else if (_isFetching) {
+      result = {
+        status: 'fetching',
+        data: null,
+        currentNewService: _currentNewService
+      }
+    } else {
+      result = {
+        status: 'fetched',
+        data: _services,
+        currentNewService: _currentNewService
       }
     }
-    return {
-      status: 'fetched',
-      data: _services
-    }
-  }
-  saveNewService() {
-    $.post('/services',
-      _newService
-    ).done(function (data) {
-      let _newService = {
-        serviceName: '',
-        price: 0,
-        description: ''};
-      this.addService(data);
-    }).fail(function (data) {
-      console.log(data);
-    })
+    return result;
   }
   addService(service) {
     _services.push(service);
+    servicesStore.emit('updated');
   }
 }
 const servicesStore = new ServicesStore();
 
 function fetchServices () {
-  setTimeout(function () {
-    isFetched = true;
+  _isFetching = true;
+  $.get('/services').done(function (data) {
+    _services =data;
+  }).fail(function (error){
+    console.log(error);
+  }).always(function () {
+    _isFetched = true;
+    _isFetching = false;
     servicesStore.emit('updated');
-  }, 5000);
+  });
 }
 
+function saveNewService () {
+  $.post('/services',
+    _currentNewService
+  ).done(function (data) {
+    _currentNewService = {
+      serviceName: '',
+      price: 0,
+      description: ''};
+    servicesStore.addService(data.service);
+  }).fail(function (data) {
+    console.log(data);
+  })
+}
 appDispathcer.register((action) => {
   switch(action.actionType) {
     case 'service-update':
@@ -67,13 +86,11 @@ appDispathcer.register((action) => {
       servicesStore.emit('updated');
       break;
     case 'new-service-update':
-      _newService[action.field] = action.value;
-      console.log(_newService);
+      _currentNewService[action.field] = action.value;
       servicesStore.emit('new-service-updated');
       break;
     case 'new-service-save':
-      servicesStore.saveNewService();
-      servicesStore.emit('updated');
+      saveNewService();
       break;
   }
 });

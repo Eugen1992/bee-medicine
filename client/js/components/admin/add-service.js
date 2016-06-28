@@ -2,7 +2,6 @@ const appDispathcer = require('./../../dispatcher.js');
 
 class AddService extends React.Component {
   onChange(event) {
-    console.log(event.target.name);
     appDispathcer.dispatch({
       actionType: 'new-service-update',
       field: event.target.name,
@@ -19,11 +18,11 @@ class AddService extends React.Component {
       <div class="service-add-block service-extension">
         <h2>Добавить услугу</h2>
         <span className="service-headline">Название </span><br/>
-        <input type="text" name="serviceName" className="service-extension-inputs" onChange={this.onChange.bind(this)}/><br/>
+        <input type="text" name="name" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewService.name}/><br/>
         <span className="service-headline">Цена </span><br/>
-        <input type="number" name="price" className="service-extension-inputs" onChange={this.onChange.bind(this)}/><br/>
+        <input type="number" name="price" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewService.price}/><br/>
         <span className="service-headline">Описание </span><br/>
-        <textarea name="serviceDescription" className="service-extension-textarea" onChange={this.onChange.bind(this)}/><br/>
+        <textarea name="description" className="service-extension-textarea" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewService.description}/><br/>
         <button onClick={this.submit.bind(this)}>Add service</button>
       </div>
     )
