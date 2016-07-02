@@ -5,7 +5,7 @@ class Header extends React.Component {
     return (
       <div className="header">
         <div className="header-text js-logo">
-          ПЧЕЛИНАЯ МЕДИЦИНА
+          КОДАЦКАЯ БАНЯ
         </div>
         <PopupButton
           colorTheme="light"

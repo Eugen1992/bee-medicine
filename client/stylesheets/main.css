@@ -149,7 +149,8 @@ body {
   background-image: url(../images/logo.jpg);
   background-size: cover;
   background-position: top center;
-  background-attachment: fixed; }
+  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.5); }
   .header::before {
     content: "";
     display: inline-block;
@@ -163,10 +164,9 @@ body {
     left: 30%;
     top: 30%;
     text-align: center;
-    font-family: Lato, "Open Sans Condensed", sans-serif;
-    font-size: 53.9px;
-    font-weight: 700;
-    color: #fff; }
+    font-family: 'Didact Gothic', sans-serif;
+    font-size: 54px;
+    color: white; }
 
 @media only screen and (max-width: 1024px) {
   .header-text {
