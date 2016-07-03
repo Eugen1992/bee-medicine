@@ -23,7 +23,7 @@ class Services extends React.Component {
       });
     } else {
       list.push(
-          <span class="service-headline" key="no-service">Пока что услуг нет.</span>
+          <span className="service-headline" key="no-service">Пока что услуг нет.</span>
       )
     }
 

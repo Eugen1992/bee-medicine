@@ -95,10 +95,13 @@ function deleteService (service) {
       console.log(error);
     });
 }
+function editService () {
+  
+}
 appDispathcer.register((action) => {
   switch(action.actionType) {
-    case 'service-update':
-      //update service
+    case 'service-edit':
+      editService(action.service);
       servicesStore.emit('updated');
       break;
     case 'new-service-update':

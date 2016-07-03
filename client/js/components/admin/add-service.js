@@ -15,7 +15,7 @@ class AddService extends React.Component {
   }
   render() {
     return(
-      <div class="service-add-block service-extension">
+      <div className="service-add-block service-extension">
         <h2>Добавить услугу</h2>
         <span className="service-headline">Название </span><br/>
         <input type="text" name="name" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewService.name}/><br/>

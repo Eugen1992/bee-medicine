@@ -7,13 +7,21 @@ class ServiceItem extends React.Component {
       service: this.props.data
     });
   }
+  editItem() {
+    appDispathcer.dispatch({
+      actionType: 'service-edit',
+      service: this.props.data
+    });
+  }
   render() {
     return(
       <div>
         <span><img src="../images/clock2.png" alt="service logo"/></span><br/>
-        <span class="service-headline">{this.props.data.serviceName}</span> <br/>
-        <span class="sub-headline">{this.props.data.price}грн</span><br/>
-        <span class="descriptionCustom">{this.props.data.description}</span><br/>
+        
+        <span className="service-headline">Название</span> <br/>
+        <input className="service-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.serviceName}/><br/>
+        <span className="sub-headline">{this.props.data.price}грн</span><br/>
+        <span className="descriptionCustom">{this.props.data.description}</span><br/>
         <button onClick={this.deleteItem.bind(this)}>Delete</button>
       </div>
     )
