@@ -7,10 +7,14 @@ class ServiceItem extends React.Component {
       service: this.props.data
     });
   }
-  editItem() {
+  editItem(event) {
     appDispathcer.dispatch({
       actionType: 'service-edit',
-      service: this.props.data
+      data: {
+        _id: this.props.data._id,
+        field: event.target.name,
+        value: event.target.value
+      }
     });
   }
   render() {
@@ -19,10 +23,12 @@ class ServiceItem extends React.Component {
         <span><img src="../images/clock2.png" alt="service logo"/></span><br/>
         
         <span className="service-headline">Название</span> <br/>
-        <input className="service-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.serviceName}/><br/>
-        <span className="sub-headline">{this.props.data.price}грн</span><br/>
-        <span className="descriptionCustom">{this.props.data.description}</span><br/>
-        <button onClick={this.deleteItem.bind(this)}>Delete</button>
+        <input name="name" className="service-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.name}/><br/>
+        <span className="service-headline">Цена</span> <br/>
+        <input name="price" className="sub-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.price}/>грн<br/>
+        <span className="service-headline">Описание</span> <br/>
+        <input name="description" className="descriptionCustom" onChange={this.editItem.bind(this)} defaultValue={this.props.data.description}/><br/>
+        <button className="service-adminButton" onClick={this.deleteItem.bind(this)}>Удалить</button>
       </div>
     )
   }

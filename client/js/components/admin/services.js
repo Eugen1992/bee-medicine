@@ -15,6 +15,7 @@ class Services extends React.Component {
   }
   getListOfServices() {
     var list = [];
+    
     if (this.props.services.data) {
       this.props.services.data.forEach(function (service, index) {
         list.push(

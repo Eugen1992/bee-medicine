@@ -50,6 +50,13 @@ class ServicesStore extends EventEmitter {
     _services.push(service);
     servicesStore.emit('updated');
   }
+  editService(data) {
+    var serviceToUpdate = _services.find(service => service._id == data._id);
+
+    serviceToUpdate[data.field] = data.value;
+
+    return serviceToUpdate;
+  }
   deleteService(service) {
     let index = _.findIndex(_services, service);
     _services.splice(index, 1);
@@ -79,7 +86,7 @@ function saveNewService () {
       serviceName: '',
       price: 0,
       description: ''};
-    servicesStore.addService(data.service);
+    servicesStore.addService(data);
   }).fail(function (data) {
     console.log(data);
   })
@@ -95,13 +102,21 @@ function deleteService (service) {
       console.log(error);
     });
 }
-function editService () {
-  
+function editService (data) {
+  let editedService = servicesStore.editService(data);
+  console.log(data);
+  $.ajax({
+    url: '/services/' + editedService._id,
+    data: editedService,
+    type: 'PUT'})
+    .fail(function(error) {
+      console.log(error);
+    });
 }
 appDispathcer.register((action) => {
   switch(action.actionType) {
     case 'service-edit':
-      editService(action.service);
+      editService(action.data);
       servicesStore.emit('updated');
       break;
     case 'new-service-update':

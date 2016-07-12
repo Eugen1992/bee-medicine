@@ -3,14 +3,14 @@ const PopupButton = require('./popup-button');
 class Header extends React.Component {
   render() {
     return (
-    <div className="container js-footer">
-      <div className="headline dark-style">Контакты</div>
-      <div className="external-block dark-frame">
+      <div className="header">
+        <div className="header-text js-logo">
+          КОДАЦКАЯ БАНЯ
+        </div>
         <PopupButton
-          colorTheme="dark"
+          colorTheme="light"
           bookingInfo={this.props.bookingInfo}/>
       </div>
-    </div>
     )
   }
 }

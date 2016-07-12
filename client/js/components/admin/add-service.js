@@ -23,7 +23,7 @@ class AddService extends React.Component {
         <input type="number" name="price" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewService.price}/><br/>
         <span className="service-headline">Описание </span><br/>
         <textarea name="description" className="service-extension-textarea" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewService.description}/><br/>
-        <button onClick={this.submit.bind(this)}>Add service</button>
+        <button onClick={this.submit.bind(this)}>Добавить</button>
       </div>
     )
   }

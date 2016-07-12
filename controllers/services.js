@@ -21,23 +21,22 @@ function controller(app) {
   
   app.delete("/services/:id", function(req, res) {
     req.db.collection('services').
-      deleteOne({'_id': req.ObjectId(req.params.id)}, function (err, numberOfDeleted) {
+      deleteOne({'_id': req.ObjectId(req.params.id)}, function (err, result) {
         if (err) {
           res.sendStatus(500);  
         } else {
-          res.sendStatus(200);
+          res.sendStatus(204);
         }
       });
   });
 
    app.put("/services/:id", function(req, res) {
      delete req.body._id;
-     req.db.collection('services').
-      updateOne({'_id': req.ObjectId(req.params.id)}, req.body, {}, function (err, result) {
+     req.db.collection('services').updateOne({'_id': req.ObjectId(req.params.id)}, req.body, {}, function (err, result) {
         if (err) {
           res.sendStatus(500);
         } else {
-          res.send(result);
+          res.send({status: 200});//, service: result.ops[0]});
         }
       });
    });
@@ -48,7 +47,7 @@ function controller(app) {
         if (err) {
           res.sendStatus(500);
         } else {
-          res.send({status: 200, service: result.ops[0]});
+          res.status(201).json(result.ops[0]);
         }
       });
    });
