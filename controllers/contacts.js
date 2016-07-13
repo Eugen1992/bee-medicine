@@ -1,5 +1,3 @@
-const mailer = require('./mailer.js');
-
 function controller(app) {
   app.get("/contacts", function(req, res) { 
     req.db.collection('contacts').
