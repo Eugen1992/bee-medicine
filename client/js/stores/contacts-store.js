@@ -102,7 +102,7 @@ function deleteContact (contact) {
 }
 function editContact (data) {
   let editedContact = contactsStore.editContact(data);
-  console.log(data);
+  
   $.ajax({
     url: '/contacts/' + editedContact._id,
     data: editedContact,
