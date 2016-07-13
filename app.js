@@ -3,6 +3,7 @@ var underscore = _ = require("underscore");
 var bodyParser = require("body-parser");
 var serviceController = require('./controllers/services.js');
 var contactController = require('./controllers/contacts.js');
+var bookTimeController = require('./controllers/book-time.js');
 var receiversController = require('./controllers/receivers.js');
 var app = express();
 var mongoDb = require('mongodb');
@@ -23,7 +24,8 @@ MongoClient.connect(localDB, function (err, db) {
     next();
   });
   serviceController.controller(app);
-  contactController.controller(app);
+  bookTimeController.controller(app);
+  //contactController.controller(app);
   receiversController.controller(app);
 });
 

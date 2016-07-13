@@ -66,7 +66,7 @@ const contactsStore = new ContactsStore();
 function fetchContacts () {
   _isFetching = true;
   $.get('/contacts').done(function (data) {
-    _contacts =data;
+    _contacts = data;
   }).fail(function (error){
     console.log(error);
   }).always(function () {

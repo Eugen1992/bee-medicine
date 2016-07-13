@@ -22,7 +22,7 @@ class BookTimeStore extends EventEmitter {
     };
   }
   saveBooking() {
-    $.post('/contacts',
+    $.post('/book-time',
       _bookingInProcess
     ).done(function (data) {
       console.log(data);
@@ -31,6 +31,7 @@ class BookTimeStore extends EventEmitter {
     })
   }
 }
+
 const bookTimeStore = new BookTimeStore();
 
 appDispathcer.register((action) => {

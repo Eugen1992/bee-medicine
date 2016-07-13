@@ -11,12 +11,12 @@ class AdminContent extends React.Component {
     super(props);
     this.state = this.getState();
     ServicesStore.on('updated', this.updateServices.bind(this));
-    //BookTimeStore.on('updated', this.updateBooking.bind(this));
+    ContactsStore.on('updated', this.updateContacts.bind(this));
   }
   getState() {
     return {
-      services: ServicesStore.getServices()
-
+      services: ServicesStore.getServices(),
+      contacts: ContactsStore.getContacts()
     }
   }
   updateServices() {
@@ -24,14 +24,19 @@ class AdminContent extends React.Component {
       services: ServicesStore.getServices()
     });
   }
+  updateContacts() {
+    this.setState({
+      services: ContactsStore.getContacts()
+    });
+  }
   render() {
     return (
       <div className="content">
         <About/>
         <AboutServices/>
-        <Services services={this.state.services} />
+        <Services services = {this.state.services} />
         <Gallery/>
-        <Contacts/>
+        <Contacts contacts = {this.state.contacts} />
       </div>
     )
   }
