@@ -25,7 +25,7 @@ MongoClient.connect(localDB, function (err, db) {
   });
   serviceController.controller(app);
   bookTimeController.controller(app);
-  //contactController.controller(app);
+  contactController.controller(app);
   receiversController.controller(app);
 });
 

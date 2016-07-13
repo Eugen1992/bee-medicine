@@ -50,7 +50,6 @@ function controller(app) {
         if (err) {
           res.sendStatus(500);
         } else {
-          mailer.sendOrderToAdmin(req, result.ops[0]);
           res.send({status: 200, contact: result.ops[0]});
         }
       });
