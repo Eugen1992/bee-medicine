@@ -36,7 +36,7 @@ function controller(app) {
         if (err) {
           res.sendStatus(500);
         } else {
-          res.send({status: 200});//, service: result.ops[0]});
+          res.send({status: 200});
         }
       });
    });

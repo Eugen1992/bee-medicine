@@ -23,11 +23,11 @@ function controller(app) {
   
   app.delete("/contacts/:id", function(req, res) {
     req.db.collection('contacts').
-      deleteOne({'_id': req.ObjectId(req.params._id)}, function (err, numberOfDeleted) {
+      deleteOne({'_id': req.ObjectId(req.params.id)}, function (err, numberOfDeleted) {
         if (err) {
           res.sendStatus(500);
         } else {
-          res.sendStatus(200);
+          res.sendStatus(204);
         }
       });
   });
