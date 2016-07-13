@@ -26,7 +26,7 @@ class AdminContent extends React.Component {
   }
   updateContacts() {
     this.setState({
-      сontacts: ContactsStore.getContacts()
+      contacts: ContactsStore.getContacts()
     });
   }
   render() {
