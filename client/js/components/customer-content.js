@@ -1,4 +1,5 @@
 const ServicesStore = require('./../stores/services-store');
+const ContactsStore = require('./../stores/contacts-store');
 const BookTimeStore = require('./../stores/book-time-store');
 const Header = require('./customer/header');
 const About = require('./customer/about');
@@ -13,11 +14,13 @@ class CustomerContent extends React.Component {
     this.state = this.getState();
     ServicesStore.on('updated', this.updateServices.bind(this));
     BookTimeStore.on('updated', this.updateBooking.bind(this));
+    ContactsStore.on('updated', this.updateContacts.bind(this));
   }
   getState() {
     return {
       services: ServicesStore.getServices(),
-      booking: BookTimeStore.getBookingInfo()
+      booking: BookTimeStore.getBookingInfo(),
+      contacts: ContactsStore.getContacts()
     }
   }
   updateServices() {
@@ -30,6 +33,11 @@ class CustomerContent extends React.Component {
       booking: BookTimeStore.getBookingInfo()
     })
   }
+  updateContacts() {
+    this.setState({
+      contacts: ContactsStore.getContacts()
+    })
+  }
   render() {
     return (
       <div className="content">
@@ -38,7 +46,7 @@ class CustomerContent extends React.Component {
         <AboutServices/>
         <Services services = {this.state.services} />
         <Gallery/>
-        <Contacts bookingInfo = {this.state.booking} />
+        <Contacts bookingInfo = {this.state.booking} contacts = {this.state.contacts} />
       </div>
     )
   }

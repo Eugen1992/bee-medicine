@@ -50,7 +50,7 @@ function controller(app) {
         if (err) {
           res.sendStatus(500);
         } else {
-          res.send({status: 200, contact: result.ops[0]});
+          res.status(201).json(result.ops[0]);
         }
       });
    });

@@ -20,7 +20,7 @@ class AddContact extends React.Component {
         <span className="service-headline">Имя</span><br/>
         <input type="text" name="name" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewContact.name}/><br/>
         <span className="service-headline">Значение </span><br/>
-        <input type="number" name="value" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewContact.value}/><br/>
+        <input type="text" name="value" className="service-extension-inputs" onChange={this.onChange.bind(this)} defaultValue={this.props.currentNewContact.value}/><br/>
         <button onClick={this.submit.bind(this)}>Добавить</button>
       </div>
     )

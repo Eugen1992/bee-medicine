@@ -9,7 +9,7 @@ class ContactItem extends React.Component {
   }
   editItem(event) {
     appDispathcer.dispatch({
-      actionType: 'service-edit',
+      actionType: 'contact-edit',
       data: {
         _id: this.props.data._id,
         field: event.target.name,
@@ -20,12 +20,10 @@ class ContactItem extends React.Component {
   render() {
     return(
       <div>
-        <span><img src="../images/clock2.png" alt="service logo"/></span><br/>
-
         <span className="service-headline">Имя</span> <br/>
         <input name="name" className="service-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.name}/><br/>
         <span className="service-headline">Значение</span> <br/>
-        <input name="price" className="sub-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.price}/>грн<br/>
+        <input name="value" className="sub-headline" onChange={this.editItem.bind(this)} defaultValue={this.props.data.value}/>грн<br/>
         <button className="service-adminButton" onClick={this.deleteItem.bind(this)}>Удалить</button>
       </div>
     )
