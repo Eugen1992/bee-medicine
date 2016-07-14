@@ -10,19 +10,18 @@ var transporter = nodemailer.createTransport({
 
 var mailer = {
   sendOrderToAdmin: function (req, orderDetails) {
-    var recieversAdreses = ['eugenalforov@gmail.com'];
     var result;
     req.db.collection('receivers').
     find({}).
     toArray(function (err, receivers) {
-      var joinedAdreses = receivers.map(function (receiver) { return receiver.recieverAdress }).join(', ');
+      var joinedAdreses = receivers.map(function (receiver) { return receiver.address }).join(', ');
 
       var mailOptions = {
-        from: 'Сон на ульях  <beesmedicine@gmail.com>', // sender address
-        to: 'eugenalforov@gmail.com', // list of receivers
+        from: 'Баня  <beesmedicine@gmail.com>', // sender address
+        to: joinedAdreses, // list of receivers
         subject: 'Заказ времени и услуги', // Subject line
         text: generateText(orderDetails)
-      }
+      };
 
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {

@@ -1,5 +1,5 @@
 const AddReceiver = require('./add-receiver.js');
-//const ReceiverItem = require('./receiver-item.js');
+const ReceiverItem = require('./receiver-item.js');
 
 class Receivers extends React.Component {
   render() {
@@ -7,7 +7,7 @@ class Receivers extends React.Component {
       <div className="container js-footer">
         <div className="headline dark-style">Список получателей уведомлений</div>
         <div className="external-block dark-frame">
-          {/*{this.getListOfContacts()}*/}
+          {this.getListOfContacts()}
           <AddReceiver currentNewReceiver = {this.props.receivers.currentNewReceiver}/>
         </div>
       </div>
@@ -15,10 +15,10 @@ class Receivers extends React.Component {
   }
   getListOfContacts() {
     var list = [];
-    if (this.props.contacts.data) {
-      this.props.contacts.data.forEach(function (service, index) {
+    if (this.props.receivers.data) {
+      this.props.receivers.data.forEach(function (receiver, index) {
         list.push(
-          <ContactItem data={service} key={index}/>
+          <ReceiverItem data={receiver} key={index}/>
         );
       });
     } else {
