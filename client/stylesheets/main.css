@@ -411,6 +411,15 @@ body {
   border-bottom: solid 1px white;
   padding: 10px;
   outline: none; }
+  .bookForm-input.is-invalid {
+    color: red;
+    border-color: red; }
+    .bookForm-input.is-invalid::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      background-color: red; }
 
 .bookForm-closeSign {
   position: absolute;

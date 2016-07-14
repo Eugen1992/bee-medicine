@@ -22,6 +22,7 @@ class PopupButton extends React.Component {
           this.state.isOpened
             ? <BookTimeView
               bookingInProcess = {this.props.bookingInfo.bookingInProcess}
+              validState = {this.props.bookingInfo.validState}
               onClose = {this.closePopup.bind(this)}/>
             : null
         }
